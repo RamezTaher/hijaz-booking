@@ -1,0 +1,111 @@
+<div class="auth">
+  <div class="auth-modal">
+    <div class="auth-header">
+      <h1>
+        <div>{{ "AUTH.LOGIN" | translate }}</div>
+        <div class="separator"></div>
+      </h1>
+      <i (click)="close.emit()" class="icon-close_black_24dp"></i>
+    </div>
+    <div class="auth-body">
+      <form [formGroup]="user_form" class="inputs">
+        <div class="input-form">
+          <div class="title">{{ "INPUT.EMAIL" | translate }}</div>
+          <input
+            name="email"
+            formControlName="userName"
+            [placeholder]="'INPUT.EMAIL' | translate"
+            type="text"
+          />
+          <i class="icon-email_black_24dp action"></i>
+          <div
+            class="error-msg"
+            *ngIf="
+              user_form.controls['userName'].touched &&
+              user_form.controls['userName'].invalid
+            "
+          >
+            {{ "VALIDATION.REQUIRED" | translate }}
+          </div>
+        </div>
+        <div class="input-form">
+          <div class="title">{{ "INPUT.PASSWORD" | translate }}</div>
+          <input
+            formControlName="password"
+            [placeholder]="'INPUT.PASSWORD' | translate"
+            [type]="isPasswordVisible ? 'text' : 'password'"
+          />
+          <i class="icon-lock_black_24dp action"></i>
+          <i
+            (click)="togglePasswordVisibility()"
+            *ngIf="!isPasswordVisible"
+            class="icon-visibility_off_black_24dp visibility"
+          ></i>
+          <i
+            (click)="togglePasswordVisibility()"
+            *ngIf="isPasswordVisible"
+            class="icon-visibility_black_24dp visibility"
+          ></i>
+          <div
+            class="error-msg"
+            *ngIf="
+              user_form.controls['password'].touched &&
+              user_form.controls['password'].invalid
+            "
+          >
+            {{ "VALIDATION.REQUIRED" | translate }}
+          </div>
+        </div>
+        <div class="inputs-links">
+          <div (click)="close.emit(); goTo('/pages/register')">
+            {{ "AUTH.CREATE_ACCOUNT_NOW" | translate }}
+          </div>
+          <div (click)="openForgot.emit()">
+            {{ "AUTH.DID_YOU_FORGOT_PASSWORD" | translate }}
+          </div>
+        </div>
+        <div class="inputs-actions">
+          <button (click)="login()" class="btn btn-primary" type="submit">
+            {{ "AUTH.LOGIN" | translate }}
+          </button>
+          <app-http-error-message
+            class="pt-1"
+            [errorObject]="
+              (httpService.state$ | async)?.error?.status == 500 && submitted
+            "
+          ></app-http-error-message>
+          <p
+            class="error-msg"
+            *ngIf="
+              (httpService.state$ | async)?.error?.status == 400 && submitted
+            "
+          >
+            {{ "VALIDATION.INCORRECT_DATA" | translate }}
+          </p>
+        </div>
+      </form>
+    </div>
+ <!--   <div class="auth-social">
+
+      <div class="auth-social-actions">
+        <button class="btn">Google</button><button class="btn">Facebook</button
+        ><button class="btn">Apple</button>
+      </div>
+      <div class="text">
+        {{ "AUTH.TERMS_POLICY_TEXT" | translate }}
+        <span
+          [routerLink]="['/terms-of-use']"
+          routerLinkActive="router-link-active"
+          >{{ "FOOTER.TERMS_AND_CONDITIONS" | translate }}</span
+        >
+        {{ "COMMON.AND" | translate }}
+        <span
+          [routerLink]="['/privacy-policy']"
+          routerLinkActive="router-link-active"
+          >{{ "FOOTER.PRIVACY_POLICY" | translate }}</span
+        >.
+      </div>
+    </div>-->
+  </div>
+</div>
+<app-mask *ngIf="(httpService.state$ | async)?.loading"></app-mask>

@@ -1,0 +1,12 @@
+<div (clickAway)="isDropOpen = false" class="picker">
+  <div (click)="isDropOpen = !isDropOpen" class="picker-section">
+    <div class="flex justify-start items-center gap-2">
+      <div class="font-bold dark-color">الأقل ثمنا</div>
+    </div>
+    <i [ngClass]="{ open: isDropOpen }" class="icon-expand_more_black_24dp"></i>
+  </div>
+  <div *ngIf="isDropOpen" class="picker-drop">
+    <div class="picker-drop-item">الأكثر ثمنا</div>
+    <div class="picker-drop-item">الأكثر شهرة</div>
+  </div>
+</div>

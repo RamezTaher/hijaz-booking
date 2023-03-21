@@ -1,0 +1,26 @@
+@import "variables";
+@import "mixins";
+@import "functions";
+:host {
+  width: fit-content;
+  .state {
+    border-radius: 5px;
+    padding: 2px 4px;
+    background-color: $secondary-tint-color;
+    align-items: center;
+    width: fit-content;
+    @extend .text-xxs;
+    &.warning {
+      border: 1px solid $warning-color;
+      color: $warning-color;
+    }
+    &.success {
+      border: 1px solid $success-color;
+      color: $success-color;
+    }
+    &.danger {
+      border: 1px solid $danger-color;
+      color: $danger-color;
+    }
+  }
+}

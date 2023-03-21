@@ -1,0 +1,468 @@
+@import "variables";
+@import "functions";
+@import "mixins";
+:host {
+  background-color: $secondary-color;
+  display: block;
+  .page {
+    background-color: $secondary-color;
+    padding: 0px 32px 40px 32px;
+    margin-top: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 16px;
+    @media only screen and (min-width: $breakpoints-md) {
+      padding: 0 0px 79px 0px;
+    }
+    &-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      background-color: $secondary-tint-color;
+      border-radius: 5px;
+      @include shadow-md;
+      margin-top: 30px;
+      padding: 15px;
+      &-text {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 5px;
+        font-weight: 700;
+        i {
+          color: $primary-color;
+        }
+        .web {
+          display: none;
+          justify-content: flex-start;
+          align-items: center;
+          gap: 5px;
+          font-weight: 700;
+          > i {
+            [dir="ltr"] & {
+              transform: rotate(180deg);
+            }
+          }
+          @media only screen and (min-width: $breakpoints-md) {
+            display: flex;
+          }
+        }
+      }
+      &-actions {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 8px;
+        > button {
+          padding: 5px;
+          width: 30px;
+          height: 30px;
+          > i {
+            @extend .text-xl;
+            color: $secondary-tint-color;
+          }
+        }
+      }
+    }
+    &-body {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 16px;
+      @media only screen and (min-width: $breakpoints-md) {
+        flex-direction: row;
+      }
+    }
+    &-details {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 16px;
+
+      @media only screen and (min-width: $breakpoints-md) {
+        width: 66.6666%;
+      }
+    }
+    &-passenger {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 16px;
+
+      @media only screen and (min-width: $breakpoints-md) {
+        width: 33.3333%;
+      }
+      &.mobile {
+        display: flex;
+        @media only screen and (min-width: $breakpoints-md) {
+          display: none;
+        }
+      }
+      &.web {
+        display: none;
+        @media only screen and (min-width: $breakpoints-md) {
+          display: flex;
+        }
+      }
+    }
+
+    &-hotel {
+      background-color: $secondary-tint-color;
+      border-radius: 5px;
+      @include shadow-md;
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
+      flex-direction: column;
+      @media only screen and (min-width: $breakpoints-md) {
+        gap: 15px;
+        flex-direction: row;
+      }
+
+      > img {
+        width: 100%;
+        object-fit: cover;
+        height: 140px;
+        border-top-right-radius: 5px;
+        border-top-left-radius: 5px;
+        @media only screen and (min-width: $breakpoints-md) {
+          height: 160px;
+          width: 30%;
+          grid-column: span 2 / span 2;
+          [dir="rtl"] & {
+            border-top-right-radius: 5px;
+            border-top-left-radius: 0;
+            border-bottom-right-radius: 5px;
+          }
+          [dir="ltr"] & {
+            border-top-left-radius: 5px;
+            border-top-right-radius: 0;
+            border-bottom-left-radius: 5px;
+          }
+        }
+      }
+      &-desc {
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        &-dates {
+          margin-top: 10px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 30px;
+          @media only screen and (min-width: $breakpoints-md) {
+            gap: 50px;
+          }
+          color: $dark-color;
+          font-weight: 700;
+          @extend .text-xs;
+        }
+        &-title {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          @extend .text-sm;
+
+          &-pos {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            color: $dark-shade-color;
+            @extend .text-xs;
+            gap: 10px;
+          }
+          &-contact {
+            display: flex;
+            gap: 14px;
+            align-items: center;
+            justify-content: flex-start;
+            > div {
+              display: flex;
+              gap: 10px;
+              align-items: center;
+              justify-content: flex-start;
+              color: $primary-color;
+              @extend .text-xs;
+              > i {
+                @extend .text-xs;
+                color: $primary-color;
+              }
+              &:last-child {
+                [dir="rtl"] & {
+                  border-right: 1px solid $primary-shade-color;
+                  padding-right: 16px;
+                }
+                [dir="ltr"] & {
+                  border-left: 1px solid $primary-shade-color;
+                  padding-left: 16px;
+                }
+              }
+            }
+          }
+          &-text {
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            gap: 10px;
+            flex-wrap: wrap;
+            flex-direction: column;
+            font-weight: 700;
+            @extend .text-sm;
+            @media only screen and (min-width: $breakpoints-md) {
+              flex-direction: row;
+              align-items: center;
+              font-size: 1rem;
+              line-height: 1.5rem;
+            }
+          }
+        }
+      }
+    }
+    &-description {
+      background-color: $secondary-tint-color;
+      width: 100%;
+      border-radius: 5px;
+      @include shadow-md;
+      padding: 15px;
+      color: $dark-color;
+      &-title {
+        @extend .text-sm;
+        font-weight: 700;
+        margin-bottom: 15px;
+        @media only screen and (min-width: $breakpoints-md) {
+          font-size: 1rem;
+          line-height: 1.5rem;
+        }
+      }
+      p {
+        @extend .text-sm;
+      }
+    }
+    &-policy {
+      background-color: $secondary-tint-color;
+      width: 100%;
+      border-radius: 5px;
+      @include shadow-md;
+      padding: 15px 0px;
+      color: $dark-color;
+      &-title {
+        @extend .text-sm;
+        font-weight: 700;
+        padding: 0 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        > button {
+          display: none;
+          padding: 10px 15px;
+          max-width: 140px;
+          @extend .text-xs;
+          font-weight: 700;
+          @media only screen and (min-width: $breakpoints-md) {
+            display: flex;
+          }
+        }
+        @media only screen and (min-width: $breakpoints-md) {
+          font-size: 1rem;
+          line-height: 1.5rem;
+        }
+      }
+      &-room {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+        border-right: 3px solid $primary-color;
+        padding: 8px 15px;
+        &:not(:last-child) {
+          margin-bottom: 15px;
+        }
+        @extend .text-xs;
+        @media only screen and (min-width: $breakpoints-md) {
+          font-size: 14px;
+          line-height: 1.25rem;
+        }
+      }
+      &-action {
+        padding: 0px 15px;
+        > button {
+          display: flex;
+          padding: 10px 15px;
+          @extend .text-xs;
+          font-weight: 700;
+          @media only screen and (min-width: $breakpoints-md) {
+            display: none;
+          }
+        }
+      }
+    }
+    &-resume {
+      width: 100%;
+      border-radius: 5px;
+      @include shadow-md;
+      @extend .text-sm;
+      background-color: $secondary-tint-color;
+      &-title {
+        @extend .text-base;
+        font-weight: 700;
+        padding: 15px;
+        border-bottom: 2px solid $primary-shade-color;
+        @media only screen and (min-width: $breakpoints-md) {
+          font-size: 1rem;
+          line-height: 1.5rem;
+        }
+      }
+      &-info {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 10px;
+        flex-direction: column;
+        padding: 15px;
+        > div {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 12px;
+          width: 100%;
+          @extend .text-xs;
+        }
+        &-ticket {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 6px;
+          > i {
+            color: $primary-color;
+          }
+        }
+        &:not(:last-child) {
+          border-bottom: 2px solid $primary-shade-color;
+        }
+      }
+    }
+    &-desc {
+      width: 100%;
+      border-radius: 5px;
+      @include shadow-md;
+      @extend .text-sm;
+      background-color: $secondary-tint-color;
+      &-title {
+        @extend .text-base;
+        font-weight: 700;
+        padding: 15px;
+        border-bottom: 2px solid $primary-shade-color;
+        @media only screen and (min-width: $breakpoints-md) {
+          font-size: 1rem;
+          line-height: 1.5rem;
+        }
+      }
+      &-hotel {
+        @extend .text-sm;
+        border-bottom: 2px solid $primary-shade-color;
+        padding: 15px;
+        &-date {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          gap: 12px;
+          font-weight: 700;
+          @extend .text-xs;
+        }
+      }
+      &-room {
+        border-right: 3px solid $primary-color;
+        padding: 8px 15px;
+        &:not(:last-child) {
+          margin-bottom: 15px;
+        }
+        @extend .text-xxs;
+      }
+    }
+    &-money {
+      width: 100%;
+      border-radius: 5px;
+      @include shadow-md;
+      @extend .text-sm;
+      background-color: $secondary-tint-color;
+      > div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+      }
+      .tax,
+      .price {
+        padding: 15px 15px 0px 15px;
+      }
+      .tax {
+        margin-bottom: 15px;
+      }
+      &-total {
+        background-color: $primary-color;
+        color: $secondary-tint-color;
+        font-weight: 700;
+        padding: 15px;
+      }
+      &-actions {
+        padding: 15px;
+        flex-direction: column;
+        @media only screen and (min-width: $breakpoints-md) {
+          flex-direction: row;
+        }
+        > button {
+          padding: 10px 15px;
+          @extend .text-xs;
+          gap: 6px;
+          > i {
+            @extend .text-sm;
+          }
+          @media only screen and (min-width: $breakpoints-md) {
+            max-width: fit-content;
+          }
+        }
+      }
+    }
+  }
+}
+.with-policy {
+  display: flex;
+  > app-policy-state {
+    padding: 0 10px;
+    align-items: baseline;
+  }
+}
+
+.res {
+  margin-top: 72px;
+  width: 100%;
+  background-color: $success-color;
+  color: $secondary-tint-color;
+  &-success {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 15px;
+    font-weight: 700;
+    padding: 15px 32px;
+    @media only screen and (min-width: $breakpoints-md) {
+      padding: 15px 0px;
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
+    > i {
+      @extend .text-4xl;
+    }
+  }
+}

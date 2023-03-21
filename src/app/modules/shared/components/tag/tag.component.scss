@@ -1,0 +1,11 @@
+@import "variables";
+@import "functions";
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  background-color: $primary-shade-color;
+  color: $primary-color;
+  @extend .text-xs;
+}

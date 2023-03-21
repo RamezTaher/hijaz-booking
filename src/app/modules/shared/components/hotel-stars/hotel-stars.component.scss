@@ -1,0 +1,18 @@
+@import "variables";
+@import "functions";
+@import "mixins";
+:host {
+  .stars {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 4px;
+    > i {
+      @extend .text-xxs;
+      color: $dark-tint-color;
+    }
+    i.active {
+      color: $warning-color;
+    }
+  }
+}

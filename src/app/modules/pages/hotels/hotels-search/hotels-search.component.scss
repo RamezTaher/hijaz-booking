@@ -1,0 +1,374 @@
+@import "variables";
+@import "functions";
+@import "mixins";
+
+:host {
+  background-color: $secondary-color;
+  display: block;
+  .page {
+    padding-top: 60px;
+    background-color: $secondary-color;
+    @media only screen and (min-width: $breakpoints-md) {
+      padding: 78px 0px;
+    }
+    &-header {
+      background-color: #f2f7f9;
+      @media only screen and (min-width: $breakpoints-md) {
+        margin-bottom: 32px;
+      }
+      @include shadow-md;
+      &-search {
+        .web {
+          display: none;
+          padding: 15px 0;
+          gap: 15px;
+          grid-template-columns: repeat(12, minmax(0, 1fr));
+          > app-destination-picker {
+            grid-column: span 3 / span 3;
+          }
+          > app-date-range-picker {
+            grid-column: span 4 / span 4;
+          }
+          > app-passenger-picker {
+            grid-column: span 3 / span 3;
+          }
+
+          > button {
+            grid-column: span 2 / span 2;
+            padding: 10px 25px;
+            gap: 12px;
+            > i {
+              @extend .text-2xl;
+            }
+          }
+          @media only screen and (min-width: $breakpoints-md) {
+            display: grid;
+          }
+        }
+        .mobile {
+          padding: 14px 32px;
+          position: relative;
+          z-index: 40;
+          &-text {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 12px;
+            > i {
+              color: $primary-color;
+              @extend .text-lg;
+            }
+            &-data {
+              @extend .text-xs;
+              font-weight: 700;
+            }
+          }
+          &-search {
+            &-bg {
+              position: fixed;
+              height: 100%;
+              width: 100%;
+              top: 73px;
+              z-index: 50;
+              [dir="rtl"] & {
+                right: 0;
+              }
+              [dir="ltr"] & {
+                left: 0;
+              }
+              background-color: rgba($color: $dark-color, $alpha: 0.5);
+            }
+            &-actions {
+              position: relative;
+              z-index: 60;
+              padding: 15px 32px;
+              top: -19px;
+              display: grid;
+              gap: 10px;
+              grid-template-columns: repeat(1, minmax(0, 1fr));
+              background-color: #f2f7f9;
+              @include shadow-md;
+              > button {
+                padding: 10px 25px;
+                gap: 12px;
+                > i {
+                  @extend .text-2xl;
+                }
+              }
+              > * {
+                grid-column: span 1 / span 1;
+              }
+            }
+            @media only screen and (min-width: $breakpoints-md) {
+              display: none;
+            }
+          }
+          @media only screen and (min-width: $breakpoints-md) {
+            display: none;
+          }
+        }
+
+        .coupon {
+          grid-column: span 2 / span 2;
+          cursor: pointer;
+          display: flex;
+          justify-content: flex-start;
+          flex-direction: column;
+          padding: 8px 16px;
+          color: $dark-color;
+          border-radius: 5px;
+          width: 100%;
+          font-weight: 600;
+          background-color: $secondary-tint-color;
+          border-radius: 5px;
+          border: 1px solid $primary-shade-color;
+          i {
+            transition: all 0.1s ease-in-out;
+          }
+          .title {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 8px;
+            color: $primary-color;
+            @extend .text-xs;
+            font-weight: 700;
+            > i {
+              @extend .text-xs;
+            }
+          }
+          .text {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            @extend .text-sm;
+            font-weight: 400;
+            > i {
+              color: $primary-color;
+            }
+            > input {
+              border: none;
+              padding: 0px;
+
+              color: $dark-color;
+              background-color: transparent;
+              @extend .text-sm;
+              font-weight: 400;
+              height: fit-content;
+              &:hover,
+              &:focus {
+                background-color: transparent;
+              }
+            }
+          }
+          @media only screen and (min-width: $breakpoints-md) {
+            & {
+              grid-column: span 3 / span 3;
+            }
+          }
+        }
+      }
+    }
+    &-mobile-filters {
+      padding: 15px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      > div {
+        padding: 2px 15px;
+        @extend .text-xs;
+        font-weight: 700;
+        color: $primary-color;
+        > i {
+          color: $primary-color;
+          @extend .text-2xl;
+        }
+      }
+      .filters {
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        top: 0px;
+        z-index: 50;
+        padding: 0;
+        [dir="rtl"] & {
+          right: 0px;
+        }
+        [dir="ltr"] & {
+          left: 0;
+        }
+        background-color: $secondary-tint-color;
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+        &-header {
+          width: 100%;
+          color: $dark-color;
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          margin-bottom: 20px;
+          @extend .text-base;
+          font-weight: 700;
+          @include shadow-md;
+          padding: 20px;
+          > i {
+            cursor: pointer;
+            @extend .text-2xl;
+            color: $dark-color;
+          }
+        }
+        app-hotels-filter {
+          height: 100%;
+          padding: 20px;
+        }
+        &-action {
+          width: 100%;
+          margin-top: auto;
+          padding: 10px 20px;
+          border-top: 1px solid $primary-tint-color;
+          @include shadow-md-top;
+          @extend .text-base;
+          > button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 15px;
+          }
+        }
+      }
+      .sort-by {
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        top: 0px;
+        z-index: 50;
+        padding: 0;
+        [dir="rtl"] & {
+          right: 0px;
+        }
+        [dir="ltr"] & {
+          left: 0;
+        }
+        &-bg {
+          background-color: rgba($color: $dark-color, $alpha: 0.5);
+          height: 100%;
+          width: 100%;
+          position: absolute;
+          z-index: 55;
+        }
+
+        &-actions {
+          position: absolute;
+          z-index: 60;
+          bottom: 0;
+          background-color: $secondary-tint-color;
+          width: 100%;
+          &-header {
+            padding: 15px 32px;
+            width: 100%;
+            color: $dark-color;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            @extend .text-base;
+            border-bottom: 1px solid $primary-shade-color;
+            font-weight: 700;
+            > i {
+              cursor: pointer;
+              @extend .text-2xl;
+              color: $dark-color;
+            }
+          }
+          &-body {
+            padding: 15px 32px;
+
+            > div {
+              display: flex;
+              padding: 15px 0;
+              justify-content: space-between;
+              align-items: center;
+              gap: 15px;
+              font-weight: 400;
+              @extend .text-base;
+              color: $dark-color;
+              &:not(:last-child) {
+                border-bottom: 1px solid $primary-shade-color;
+              }
+              > i {
+                color: $primary-color;
+                @extend .text-xl;
+              }
+            }
+          }
+        }
+        @media only screen and (min-width: $breakpoints-md) {
+          display: none;
+        }
+      }
+      @media only screen and (min-width: $breakpoints-md) {
+        display: none;
+      }
+    }
+    &-search {
+      padding: 10px 32px 50px;
+      justify-content: space-between;
+      display: flex;
+      gap: 70px;
+
+      &-filter {
+        width: 30%;
+        display: none;
+        @include shadow-md;
+        border-radius: 5px;
+        @media only screen and (min-width: $breakpoints-md) {
+          display: block;
+        }
+      }
+      &-data {
+        width: 100%;
+        @media only screen and (min-width: $breakpoints-md) {
+          width: 70%;
+        }
+        &-header {
+          display: none;
+          justify-content: space-between;
+          align-items: center;
+          padding: 16px;
+          @include shadow-md;
+          border-radius: 5px;
+          margin-bottom: 16px;
+          background: white;
+          &-number {
+            font-weight: 700;
+            color: $dark-color;
+          }
+          &-filter {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 8px;
+            color: $dark-shade-color;
+            @extend .text-xs;
+            white-space: nowrap;
+          }
+          @media only screen and (min-width: $breakpoints-md) {
+            display: flex;
+          }
+        }
+        &-list {
+          display: flex;
+          justify-content: flex-start;
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 16px;
+        }
+      }
+      @media only screen and (min-width: $breakpoints-md) {
+        padding: 10px 0px;
+      }
+    }
+  }
+}

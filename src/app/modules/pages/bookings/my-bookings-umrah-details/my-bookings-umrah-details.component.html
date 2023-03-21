@@ -1,0 +1,551 @@
+<div class="res">
+  <div *ngIf="success" class="res-success">
+    <i class="icon-check_circle_outline_black_24dp"></i>
+    <div>{{ "VALIDATION.RES_CONFIRMED" | translate }}</div>
+  </div>
+</div>
+<div class="container">
+  <div class="page">
+    <div class="page-details">
+      <div class="page-card">
+        <div class="page-card-header">
+          <div class="title">
+            <i class="icon-king_bed_black_24dp"></i>
+            <div>{{ "BOOKINGS.MOOTAMIRIN_INFO" | translate }}</div>
+          </div>
+        </div>
+        <div class="page-clients">
+          <div class="page-clients-client">
+            <div class="title">بيانات المسافر الرئيسي</div>
+            <div class="info">
+              <div class="info-item">
+                <div>{{ "INPUT.FIRST_NAME" | translate }}</div>
+                <div>الاسم الاول</div>
+              </div>
+              <div class="info-item">
+                <div>{{ "INPUT.LAST_NAME" | translate }}</div>
+                <div>الكنية</div>
+              </div>
+              <div class="info-item">
+                <div>{{ "INPUT.BIRTHDAY" | translate }}</div>
+                <div>19/10/1994</div>
+              </div>
+              <div class="info-item">
+                <div>{{ "INPUT.GENDER" | translate }}</div>
+                <div>الجنس</div>
+              </div>
+              <div class="info-item">
+                <div>{{ "INPUT.COUNTRY" | translate }}</div>
+                <div>الدولة</div>
+              </div>
+              <div class="info-item">
+                <div>{{ "INPUT.NATIONALITY" | translate }}</div>
+                <div>الجنسية</div>
+              </div>
+              <div class="info-item">
+                <div>{{ "INPUT.PHONE_NUMBER" | translate }}</div>
+                <div>216 73 278 827</div>
+              </div>
+              <div class="info-item">
+                <div>{{ "INPUT.EMAIL" | translate }}</div>
+                <div>البريد الإلكتروني</div>
+              </div>
+              <div class="info-item">
+                <div>{{ "INPUT.ADDRESS" | translate }}</div>
+                <div>العنوان</div>
+              </div>
+              <div class="info-item">
+                <div>{{ "INPUT.PASSPORT_NUMBER" | translate }}</div>
+                <div>رقم جواز السفر</div>
+              </div>
+              <div class="info-item">
+                <div>{{ "INPUT.EXP_PASS_DATE" | translate }}</div>
+                <div>19/10/2022</div>
+              </div>
+              <div class="info-item">
+                <div>{{ "INPUT.MOHRAM_PASSPORT_NUMBER" | translate }}</div>
+                <div>رقم جواز سفر المحرم</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="page-card">
+        <div class="page-card-header">
+          <div class="title">
+            <i class="icon-king_bed_black_24dp"></i>
+            <div>{{ "BOOKINGS.FIRST_DESTINATION" | translate }}</div>
+          </div>
+          <div class="brn">
+            <div>{{ "BOOKINGS.BRN" | translate }}:</div>
+            <div>UME13777e47748</div>
+          </div>
+        </div>
+
+        <div class="page-hotel">
+          <img src="assets/images/lowe-res-kabah.jpg" alt="" />
+          <div class="page-hotel-desc">
+            <div class="page-hotel-desc-title">
+              <div class="page-hotel-desc-title-text">
+                فندق ثروات الاندلسية - hudxconnect
+                <app-hotel-stars [stars]="4"></app-hotel-stars>
+              </div>
+              <div class="page-hotel-desc-title-pos">
+                <i class="icon-place_black_24dp text-xs"></i>
+                بالقرب من طريق الملك عبد العزيز ، أبراج البيت ، مكة المكرمة
+                21955 ، المملكة العربية السعودية
+              </div>
+              <div class="page-hotel-desc-title-contact">
+                <div>
+                  <i class="icon-call_black_24dp"></i>
+                  <div>125913340</div>
+                </div>
+                <div>
+                  <i class="icon-email_black_24dp"></i>
+                  <div>Krawahel@gmail.com</div>
+                </div>
+              </div>
+            </div>
+            <div class="page-hotel-desc-dates">
+              <div>
+                <div>{{ "HOTELS.ARRIVAL_DATE" | translate }}</div>
+                <div class="mt-1 success-color">يوليو 30، 2021 15:00</div>
+              </div>
+              <div>
+                <div>{{ "HOTELS.DEPARTURE_DATE" | translate }}</div>
+                <div class="mt-1 success-color">يوليو 30، 2021 15:00</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="page-card">
+        <div class="page-card-header">
+          <div class="title">
+            <i class="icon-king_bed_black_24dp"></i>
+            <div>{{ "BOOKINGS.SECOND_DESTINATION" | translate }}</div>
+          </div>
+          <div class="brn">
+            <div>{{ "BOOKINGS.BRN" | translate }}:</div>
+            <div>UME13777e47748</div>
+          </div>
+        </div>
+
+        <div class="page-hotel">
+          <img src="assets/images/lowe-res-kabah.jpg" alt="" />
+          <div class="page-hotel-desc">
+            <div class="page-hotel-desc-title">
+              <div class="page-hotel-desc-title-text">
+                فندق ثروات الاندلسية - hudxconnect
+                <app-hotel-stars [stars]="4"></app-hotel-stars>
+              </div>
+              <div class="page-hotel-desc-title-pos">
+                <i class="icon-place_black_24dp text-xs"></i>
+                بالقرب من طريق الملك عبد العزيز ، أبراج البيت ، مكة المكرمة
+                21955 ، المملكة العربية السعودية
+              </div>
+              <div class="page-hotel-desc-title-contact">
+                <div>
+                  <i class="icon-call_black_24dp"></i>
+                  <div>125913340</div>
+                </div>
+                <div>
+                  <i class="icon-email_black_24dp"></i>
+                  <div>Krawahel@gmail.com</div>
+                </div>
+              </div>
+            </div>
+            <div class="page-hotel-desc-dates">
+              <div>
+                <div>{{ "HOTELS.ARRIVAL_DATE" | translate }}</div>
+                <div class="mt-1 success-color">يوليو 30، 2021 15:00</div>
+              </div>
+              <div>
+                <div>{{ "HOTELS.DEPARTURE_DATE" | translate }}</div>
+                <div class="mt-1 success-color">يوليو 30، 2021 15:00</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="page-card">
+        <div class="page-card-header">
+          <div class="title">
+            <i class="icon-local_taxi_black_24dp"></i>
+            <div>{{ "BOOKINGS.TRANSPORT" | translate }}</div>
+          </div>
+          <div class="brn">
+            <div>{{ "BOOKINGS.BRN" | translate }}:</div>
+            <div>UME13777e47748</div>
+          </div>
+        </div>
+
+        <div class="page-hotel">
+          <img src="assets/images/lowe-res-kabah.jpg" alt="" />
+          <div class="page-hotel-desc">
+            <div class="page-hotel-desc-title">
+              <div class="page-hotel-desc-title-text">
+                شركة رواحل المشاعر المحدودة لنقل الحجاج
+              </div>
+              <div class="page-hotel-desc-title-pos">
+                <i class="icon-place_black_24dp text-xs"></i>
+                بالقرب من طريق الملك عبد العزيز ، أبراج البيت ، مكة المكرمة
+                21955 ، المملكة العربية السعودية
+              </div>
+              <div class="page-hotel-desc-title-contact">
+                <div>
+                  <i class="icon-call_black_24dp"></i>
+                  <div>125913340</div>
+                </div>
+                <div>
+                  <i class="icon-email_black_24dp"></i>
+                  <div>Krawahel@gmail.com</div>
+                </div>
+              </div>
+            </div>
+            <div class="page-hotel-desc-dates">
+              <div>
+                <div>{{ "TRANSPORT.DATE" | translate }}</div>
+                <div class="mt-1 success-color">يوليو 30، 2021</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="page-card">
+        <div class="page-card-header">
+          <div class="title">
+            <i class="icon-restaurant_black_24dp"></i>
+            <div>{{ "BOOKINGS.GROUND_SERVICES" | translate }}</div>
+          </div>
+          <div class="brn">
+            <div>{{ "BOOKINGS.BRN" | translate }}:</div>
+            <div>UME13777e47748</div>
+          </div>
+        </div>
+
+        <div class="page-hotel">
+          <img src="assets/images/lowe-res-kabah.jpg" alt="" />
+          <div class="page-hotel-desc">
+            <div class="page-hotel-desc-title">
+              <div class="page-hotel-desc-title-text">
+                شركة رواحل المشاعر المحدودة لنقل الحجاج
+              </div>
+              <div class="page-hotel-desc-title-pos">
+                <i class="icon-place_black_24dp text-xs"></i>
+                بالقرب من طريق الملك عبد العزيز ، أبراج البيت ، مكة المكرمة
+                21955 ، المملكة العربية السعودية
+              </div>
+              <div class="page-hotel-desc-title-contact">
+                <div>
+                  <i class="icon-call_black_24dp"></i>
+                  <div>125913340</div>
+                </div>
+                <div>
+                  <i class="icon-email_black_24dp"></i>
+                  <div>Krawahel@gmail.com</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="page-money">
+        <div class="price">
+          <div class="dark-shade-color">
+            {{ "BOOKINGS.FIRST_DESTINATION" | translate }}
+          </div>
+          <div class="font-bold">
+            {{ prices.base }} {{ "CURRENCY.SAR" | translate }}
+          </div>
+        </div>
+        <div class="price">
+          <div class="dark-shade-color">
+            {{ "BOOKINGS.TRANSPORT" | translate }}
+          </div>
+          <div class="font-bold">
+            {{ prices.base }} {{ "CURRENCY.SAR" | translate }}
+          </div>
+        </div>
+        <div class="price">
+          <div class="dark-shade-color">
+            {{ "BOOKINGS.GROUND_SERVICES" | translate }}
+          </div>
+          <div class="font-bold">
+            {{ prices.base }} {{ "CURRENCY.SAR" | translate }}
+          </div>
+        </div>
+        <div class="tax">
+          <div class="dark-shade-color">
+            {{ "COMMON.TAX" | translate }}
+          </div>
+          <div class="font-bold">
+            {{ prices.tax }} {{ "CURRENCY.SAR" | translate }}
+          </div>
+        </div>
+        <div class="tax">
+          <div class="dark-shade-color">
+            {{ "COMMON.VAT" | translate }}
+          </div>
+          <div class="font-bold">
+            {{ prices.tax }} {{ "CURRENCY.SAR" | translate }}
+          </div>
+        </div>
+        <div class="page-money-total">
+          <div>
+            {{ "COMMON.TOTAL_PRICE" | translate }}
+          </div>
+          <div class="text-2xl">
+            {{ prices.total }} {{ "CURRENCY.SAR" | translate }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page-flight">
+      <div class="page-flight-title">بيانات المسافر الرئيسي</div>
+      <form [formGroup]="flight_form">
+        <div class="input-form">
+          <div class="title">{{ "INPUT.PHONE_NUMBER" | translate }}</div>
+          <app-phone-input formControlName="phone"></app-phone-input>
+          <div
+            class="error-msg"
+            *ngIf="
+              flight_form.controls['phone'].touched &&
+              flight_form.controls['phone'].invalid
+            "
+          >
+            {{ "VALIDATION.REQUIRED" | translate }}
+          </div>
+        </div>
+
+        <div class="input-form">
+          <div class="title">{{ "INPUT.EMAIL" | translate }}</div>
+          <input
+            name="email"
+            formControlName="email"
+            [placeholder]="'INPUT.EMAIL' | translate"
+            type="text"
+          />
+          <div
+            class="error-msg"
+            *ngIf="
+              flight_form.controls['email'].touched &&
+              flight_form.controls['email'].invalid
+            "
+          >
+            {{ "VALIDATION.REQUIRED" | translate }}
+          </div>
+        </div>
+        <div class="input-form">
+          <div class="title">
+            {{ "INPUT.ARRIVAL_AIRPORT_CODE" | translate }}
+          </div>
+          <input
+            name="arrival_airport_code"
+            formControlName="arrival_airport_code"
+            [placeholder]="'INPUT.ARRIVAL_AIRPORT_CODE' | translate"
+            type="text"
+          />
+          <div
+            class="error-msg"
+            *ngIf="
+              flight_form.controls['arrival_airport_code'].touched &&
+              flight_form.controls['arrival_airport_code'].invalid
+            "
+          >
+            {{ "VALIDATION.REQUIRED" | translate }}
+          </div>
+        </div>
+        <div class="input-form">
+          <div class="title">{{ "INPUT.ARRIVAL_FLIGHT_CODE" | translate }}</div>
+          <input
+            name="arrival_flight_code"
+            formControlName="arrival_flight_code"
+            [placeholder]="'INPUT.ARRIVAL_FLIGHT_CODE' | translate"
+            type="text"
+          />
+          <div
+            class="error-msg"
+            *ngIf="
+              flight_form.controls['arrival_flight_code'].touched &&
+              flight_form.controls['arrival_flight_code'].invalid
+            "
+          >
+            {{ "VALIDATION.REQUIRED" | translate }}
+          </div>
+        </div>
+        <div class="input-form">
+          <div class="title">{{ "INPUT.ARRIVAL_DATE" | translate }}</div>
+          <input
+            class="date"
+            formControlName="arrival_date"
+            [placeholder]="'INPUT.ARRIVAL_DATE' | translate"
+            type="text"
+            bsDatepicker
+            #dp="bsDatepicker"
+            bsDatepicker
+            [bsConfig]="bsConfig"
+          />
+          <i class="icon-calendar_today_black_24dp action"></i>
+
+          <div
+            class="error-msg"
+            *ngIf="
+              flight_form.controls['arrival_date'].touched &&
+              flight_form.controls['arrival_date'].invalid
+            "
+          >
+            {{ "VALIDATION.REQUIRED" | translate }}
+          </div>
+        </div>
+        <div class="input-form">
+          <div class="title">{{ "INPUT.ARRIVAL_TIME" | translate }}</div>
+          <input
+            class="time"
+            name="arrival_time"
+            formControlName="arrival_time"
+            [placeholder]="'INPUT.ARRIVAL_TIME' | translate"
+            type="time"
+          />
+          <div
+            class="error-msg"
+            *ngIf="
+              flight_form.controls['arrival_time'].touched &&
+              flight_form.controls['arrival_time'].invalid
+            "
+          >
+            {{ "VALIDATION.REQUIRED" | translate }}
+          </div>
+        </div>
+        <div class="input-form">
+          <div class="title">
+            {{ "INPUT.DEPARTURE_AIRPORT_CODE" | translate }}
+          </div>
+          <input
+            name="departure_airport_code"
+            formControlName="departure_airport_code"
+            [placeholder]="'INPUT.DEPARTURE_AIRPORT_CODE' | translate"
+            type="text"
+          />
+          <div
+            class="error-msg"
+            *ngIf="
+              flight_form.controls['departure_airport_code'].touched &&
+              flight_form.controls['departure_airport_code'].invalid
+            "
+          >
+            {{ "VALIDATION.REQUIRED" | translate }}
+          </div>
+        </div>
+        <div class="input-form">
+          <div class="title">
+            {{ "INPUT.DEPARTURE_FLIGHT_CODE" | translate }}
+          </div>
+          <input
+            name="departure_flight_code"
+            formControlName="departure_flight_code"
+            [placeholder]="'INPUT.DEPARTURE_FLIGHT_CODE' | translate"
+            type="text"
+          />
+          <div
+            class="error-msg"
+            *ngIf="
+              flight_form.controls['departure_flight_code'].touched &&
+              flight_form.controls['departure_flight_code'].invalid
+            "
+          >
+            {{ "VALIDATION.REQUIRED" | translate }}
+          </div>
+        </div>
+        <div class="input-form">
+          <div class="title">{{ "INPUT.DEPARTURE_DATE" | translate }}</div>
+          <input
+            class="date"
+            formControlName="departure_date"
+            [placeholder]="'INPUT.DEPARTURE_DATE' | translate"
+            type="text"
+            bsDatepicker
+            #dp="bsDatepicker"
+            bsDatepicker
+            [bsConfig]="bsConfig"
+          />
+          <i class="icon-calendar_today_black_24dp action"></i>
+
+          <div
+            class="error-msg"
+            *ngIf="
+              flight_form.controls['departure_date'].touched &&
+              flight_form.controls['departure_date'].invalid
+            "
+          >
+            {{ "VALIDATION.REQUIRED" | translate }}
+          </div>
+        </div>
+        <div class="input-form">
+          <div class="title">{{ "INPUT.DEPARTURE_TIME" | translate }}</div>
+          <input
+            class="time"
+            name="departure_time"
+            formControlName="departure_time"
+            [placeholder]="'INPUT.DEPARTURE_TIME' | translate"
+            type="time"
+          />
+          <div
+            class="error-msg"
+            *ngIf="
+              flight_form.controls['departure_time'].touched &&
+              flight_form.controls['departure_time'].invalid
+            "
+          >
+            {{ "VALIDATION.REQUIRED" | translate }}
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="page-action">
+      <div class="page-action-terms">
+        <label class="container-checkbox">
+          <input formControlName="terms" type="checkbox" />
+          <span class="checkmark-checkbox text-xs"></span>
+        </label>
+        <span class="text-xs">
+          {{ "INPUT.I_AGREE" | translate }}
+          <span class="term"
+            ><a
+              class="font-bold primary-color"
+              target="_blank"
+              [routerLink]="['/pages/terms-of-use']"
+            >
+              {{ "FOOTER.TERMS_AND_CONDITIONS" | translate }}</a
+            ></span
+          >
+        </span>
+      </div>
+      <button type="button" class="btn btn-primary">
+        {{ "BUTTON.SEND_VISA_REQUEST" | translate }}
+      </button>
+    </div>
+  </div>
+</div>
+
+<app-mask *ngIf="(bookingService.state$ | async)?.loading"></app-mask>
+<app-mask *ngIf="(cancelService.state$ | async)?.loading"></app-mask>
+<app-mask *ngIf="(confirm_cancelService.state$ | async)?.loading"></app-mask>
+<app-message-modal
+  [isConfirm]="isConfirmModal"
+  (onClose)="closeErrorModal()"
+  (onSuccess)="closeErrorModal()"
+  *ngIf="modalError.isShown"
+  [text]="modalError.text"
+  [type]="modalError.type"
+></app-message-modal>
+<app-cancellation-modal
+  [isConfirm]="isConfirmModal"
+  (onClose)="closeCancellationErrorModal()"
+  (onSuccess)="confirm_cancel($event)"
+  *ngIf="modalCancellationError.isShown"
+  [text]="modalCancellationError.text"
+  [type]="modalCancellationError.type"
+  [data]="(cancelService.state$ | async)?.data"
+></app-cancellation-modal>

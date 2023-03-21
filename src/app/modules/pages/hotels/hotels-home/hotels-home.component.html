@@ -1,0 +1,43 @@
+<div class="page">
+  <div class="page-hotels">
+    <h1>
+      <div>{{ "HOTELS.TITLE" | translate }}</div>
+    </h1>
+
+    <div
+      *ngIf="(hotelsService.state$ | async)?.loading"
+      class="page-hotels-items"
+    >
+      <app-card-loading></app-card-loading>
+    </div>
+    <div
+      *ngIf="!(hotelsService.state$ | async)?.loading"
+      class="page-hotels-items"
+    >
+      <app-hotel-card
+        [hotel]="item"
+        (click)="goToDetails(item)"
+        *ngFor="
+          let item of (hotelsService.state$ | async)?.data?.Data
+            | paginate
+              : {
+                  itemsPerPage: 10,
+                  currentPage: this.currentPage,
+                  totalItems: (hotelsService.state$ | async)?.data.TotalCount
+                }
+        "
+      ></app-hotel-card>
+    </div>
+
+    <div class="page-hotels-pagination">
+      <pagination-controls
+        class="my-pagination"
+        previousLabel=""
+        nextLabel=""
+        [autoHide]="true"
+        (pageChange)="goToPage($event)"
+        [responsive]="true"
+      ></pagination-controls>
+    </div>
+  </div>
+</div>

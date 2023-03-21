@@ -1,0 +1,327 @@
+@import "variables";
+@import "functions";
+@import "mixins";
+:host {
+  background-color: $secondary-color;
+  display: block;
+  .page {
+    background-color: $secondary-color;
+    padding: 40px 32px;
+    margin-top: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 16px;
+    @media only screen and (min-width: $breakpoints-md) {
+      padding: 79px 0px;
+    }
+    &-title {
+      background: #fff;
+      margin-top: 10px;
+      display: none;
+      justify-content: flex-start;
+      align-items: center;
+      font-weight: 700;
+      gap: 5px;
+      padding: 14px 18px;
+      @include shadow-md;
+      width: 100%;
+      border-radius: 5px;
+      > i {
+        color: $primary-color;
+        @extend .text-xl;
+      }
+      @media only screen and (min-width: $breakpoints-md) {
+        display: flex;
+        font-size: 1.25rem;
+        line-height: 1.75rem;
+        > i {
+          font-size: 1.5rem;
+          line-height: 2rem;
+        }
+      }
+      > button {
+        display: none;
+        [dir="rtl"] & {
+          margin-right: auto;
+        }
+        [dir="ltr"] & {
+          margin-left: auto;
+        }
+        @extend .text-base;
+        max-width: 150px;
+        padding: 10px 15px;
+        @media only screen and (min-width: $breakpoints-md) {
+          display: flex;
+          justify-content: space-between;
+        }
+      }
+    }
+    &-search {
+      width: 100%;
+      border-radius: 5px;
+      padding: 14px 18px;
+      @include shadow-md;
+      background-color: $secondary-tint-color;
+      &-title {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        font-weight: 700;
+        gap: 5px;
+        margin-bottom: 20px;
+        > i {
+          color: $primary-color;
+          @extend .text-xl;
+        }
+        @media only screen and (min-width: $breakpoints-md) {
+          display: none;
+        }
+      }
+      &-filters {
+        display: none;
+        @media only screen and (min-width: $breakpoints-md) {
+          display: block;
+        }
+      }
+      &-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        @media only screen and (min-width: $breakpoints-md) {
+          display: none;
+        }
+        > div {
+          width: 50%;
+          padding: 10px 15px;
+          @extend .text-xs;
+          font-weight: 700;
+        }
+      }
+      .filters {
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        top: 0px;
+        z-index: 50;
+        padding: 0;
+        [dir="rtl"] & {
+          right: 0px;
+        }
+        [dir="ltr"] & {
+          left: 0;
+        }
+        background-color: $secondary-tint-color;
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+        &-header {
+          width: 100%;
+          color: $dark-color;
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          margin-bottom: 20px;
+          @extend .text-base;
+          font-weight: 700;
+          @include shadow-md;
+          padding: 20px;
+          > i {
+            cursor: pointer;
+            @extend .text-2xl;
+            color: $dark-color;
+          }
+        }
+        app-bookings-filter {
+          height: 100%;
+          padding: 20px;
+        }
+        &-action {
+          width: 100%;
+          margin-top: auto;
+          padding: 10px 20px;
+          border-top: 1px solid $primary-tint-color;
+          @include shadow-md-top;
+          @extend .text-base;
+          margin-top: 10px;
+          > button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 15px;
+          }
+        }
+      }
+    }
+    &-body {
+      width: 100%;
+      &-list {
+        border: 1px solid #eee;
+        &.mobile {
+          width: 100%;
+          border-radius: 5px;
+          @include shadow-md;
+          background-color: $secondary-tint-color;
+          .item {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            padding: 14px 18px;
+            &:not(:last-child) {
+              border-bottom: 1px solid $primary-tint-color;
+            }
+            &:first-child {
+              border-top-right-radius: 5px;
+              border-top-left-radius: 5px;
+            }
+            &:last-child {
+              border-bottom-right-radius: 5px;
+              border-bottom-left-radius: 5px;
+            }
+            &-title {
+              color: $primary-color;
+              @extend .text-xs;
+              font-weight: 700;
+              > i {
+                color: $primary-color;
+              }
+              display: flex;
+              justify-content: flex-start;
+              align-items: center;
+              gap: 6px;
+              grid-column: span 2 / span 2;
+            }
+            &-info {
+              display: flex;
+              justify-content: flex-start;
+              align-items: flex-start;
+              flex-direction: column;
+              gap: 5px;
+              grid-column: span 1 / span 1;
+              &-title {
+                font-weight: 700;
+                @extend .text-xs;
+              }
+              &-data {
+                @extend .text-xs;
+                color: $dark-shade-color;
+              }
+            }
+          }
+          @media only screen and (min-width: $breakpoints-md) {
+            display: none;
+          }
+        }
+        &.web {
+          display: none;
+          width: 100%;
+          border-radius: 5px;
+          @include shadow-md;
+          background-color: $secondary-tint-color;
+          @media only screen and (min-width: $breakpoints-md) {
+            display: block;
+          }
+
+          > table {
+            width: 100%;
+            border-collapse: separate;
+            border-radius: 5px;
+            font-weight: 700;
+            th,
+            td {
+              padding: 14px 18px;
+
+              height: 50px;
+              @extend .text-xs;
+              text-align: start;
+              vertical-align: middle;
+            }
+            td {
+              cursor: pointer;
+            }
+            tr {
+              &:not(:last-child) {
+                > td {
+                  border-bottom: 2px solid $primary-tint-color;
+                }
+              }
+            }
+            th {
+              background-color: $secondary-color;
+              &.checkbox {
+                width: 15px;
+              }
+              &:first-child {
+                [dir="rtl"] & {
+                  border-top-right-radius: 5px;
+                }
+                [dir="ltr"] & {
+                  border-top-left-radius: 5px;
+                }
+              }
+
+              &:last-child {
+                [dir="rtl"] & {
+                  border-top-left-radius: 5px;
+                }
+                [dir="ltr"] & {
+                  border-top-right-radius: 5px;
+                }
+              }
+            }
+            .address {
+              display: flex;
+              justify-content: flex-start;
+              gap: 8px;
+              align-items: center;
+              > i {
+                color: $primary-color;
+              }
+              &-title {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                @extend .text-sm;
+                font-weight: bold;
+                color: $primary-color;
+              }
+            }
+            .actions {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              gap: 8px;
+              > button {
+                padding: 5px;
+                width: 30px;
+                height: 30px;
+                > i {
+                  @extend .text-xl;
+                  color: $secondary-tint-color;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.linear-background {
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeHolderShimmer;
+  animation-timing-function: linear;
+  background: #f6f7f8;
+  background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+  background-size: 1000px 104px;
+  height: 24px;
+  width: 80%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+}

@@ -1,0 +1,15 @@
+<div class="card">
+  <div class="card-image">
+    <img [src]="hotel.DefaultPicture ?? '/assets/images/no-image.jpg'" alt="" />
+  </div>
+  <div class="card-data">
+    <h1>
+      <div>{{ hotel?.NameAr ?? hotel?.Name }}</div>
+    </h1>
+
+    <app-hotel-stars [stars]="hotel?.Stars"></app-hotel-stars>
+    <div class="card-data-pos">
+      {{ hotel.AdressAr ?? hotel.Adress }}
+    </div>
+  </div>
+</div>

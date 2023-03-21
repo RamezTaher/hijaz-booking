@@ -1,0 +1,126 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass Mixins.
+// -----------------------------------------------------------------------------
+
+@mixin rtl($property, $value) {
+  html[dir="rtl"] & {
+    #{$property}: $value !important;
+  }
+}
+
+@mixin ltr($property, $value) {
+  html[dir="ltr"] & {
+    #{$property}: $value !important;
+  }
+}
+
+//background mixin
+@mixin background-cover(
+  $background-position: center center,
+  $background-size: cover,
+  $background-repeat: no-repeat
+) {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+//flex mixin
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-center-column {
+  @include flex-center;
+  flex-direction: column;
+}
+
+@mixin flex-center-vert {
+  display: flex;
+  align-items: center;
+}
+
+@mixin flex-center-horiz {
+  display: flex;
+  justify-content: center;
+}
+
+//media queries
+
+@mixin respond($breakpoint) {
+  @if $breakpoint == sm {
+    @media (min-width: 640px) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == md {
+    @media (min-width: 768px) {
+      @content;
+    }
+  }
+  @if $breakpoint == lg {
+    @media (min-width: 1024px) {
+      @content;
+    }
+  }
+  @if $breakpoint == xl {
+    @media (min-width: 1280px) {
+      @content;
+    }
+  }
+  @if $breakpoint == xxl {
+    @media (min-width: 1536px) {
+      @content;
+    }
+  }
+}
+
+//shadow
+@mixin shadow-1 {
+  box-shadow: 0 3px 6px rgb(0 0 0 / 0.29);
+}
+@mixin shadow-2 {
+  box-shadow: 0 0px 10px rgb(0 0 0 / 0.29);
+}
+@mixin shadow-3 {
+  box-shadow: 0 0px 6px rgb(0 0 0 / 0.29);
+}
+
+//shadow mixins
+@mixin shadow-none {
+  box-shadow: 0 0 #0000;
+}
+@mixin shadow-sm {
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+}
+@mixin shadow {
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+}
+@mixin shadow-md {
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+@mixin shadow-lg {
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+@mixin shadow-sm-top {
+  box-shadow: 0 -1px 2px 0 rgb(0 0 0 / 0.05);
+}
+@mixin shadow-top {
+  box-shadow: 0 -1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+}
+@mixin shadow-md-top {
+  box-shadow: 0 -4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+@mixin shadow-lg-top {
+  box-shadow: 0 -10px 15px -3px rgb(0 0 0 / 0.1),
+    0 4px 6px -4px rgb(0 0 0 / 0.1);
+}

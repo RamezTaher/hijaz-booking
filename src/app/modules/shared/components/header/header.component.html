@@ -1,0 +1,154 @@
+<header>
+  <nav class="mobile">
+    <i [routerLink]="['..']" class="icon-navigate_next_black_24dp back-btn"></i>
+    <img
+      class="cursor-pointer"
+      [routerLink]="['/pages/home']"
+      src="assets/images/logo.png"
+      alt="logo"
+    />
+    <i (click)="isMobileNavOpen = true" class="icon-menu_black_24dp"></i>
+    <div *ngIf="isMobileNavOpen" class="side">
+      <div
+        *ngIf="storageService.isLogged()"
+        (click)="isMobileNavOpen = false"
+        [routerLink]="['/pages/profile/personal']"
+        class="side-profile"
+      >
+        <img src="assets/images/user.svg" class="side-profile-img" />
+        <div class="side-profile-data">
+          <div class="side-profile-data-name">
+            {{ this.storageService.user.name }}
+          </div>
+          <div class="side-profile-data-email">
+            {{ this.storageService.user.email }}
+          </div>
+        </div>
+        <i class="icon-chevron_left_black_24dp"></i>
+      </div>
+      <div *ngIf="!storageService.isLogged()" class="side-action">
+        <button type="button" class="btn btn-primary">
+          {{ "AUTH.LOGIN" | translate }}
+        </button>
+      </div>
+      <div class="side-links">
+        <div
+          class="side-links-link"
+          [routerLink]="['/pages/home']"
+          [routerLinkActiveOptions]="{ exact: true }"
+          routerLinkActive="open"
+          (click)="this.isMobileNavOpen = false"
+        >
+          <i class="icon-grid_view_black_24dp"></i>
+          <div>{{ "HEADER.HOME" | translate }}</div>
+        </div>
+        <div
+          class="side-links-link"
+          [routerLink]="['/pages/hotels']"
+          [routerLinkActiveOptions]="{ exact: true }"
+          routerLinkActive="open"
+          (click)="this.isMobileNavOpen = false"
+        >
+          <i class="icon-king_bed_black_24dp"></i>
+          <div>{{ "HEADER.HOTELS" | translate }}</div>
+        </div>
+        <div
+          class="side-links-link"
+          [routerLink]="['/pages/static/contact']"
+          [routerLinkActiveOptions]="{ exact: true }"
+          routerLinkActive="open"
+          (click)="this.isMobileNavOpen = false"
+        >
+          <i class="icon-call_black_24dp"></i>
+          <div>{{ "HEADER.CONTACT" | translate }}</div>
+        </div>
+      </div>
+      <div class="side-actions">
+        <app-lang-picker></app-lang-picker>
+      </div>
+      <div class="side-links pb-0 mb-0">
+        <div
+          class="side-links-link"
+          [routerLink]="['/visits']"
+          routerLinkActive="open"
+          (click)="this.isMobileNavOpen = false"
+        >
+          <i class="icon-help_black_24dp"></i>
+          <div>{{ "HEADER.CUSTOMER_SERVICE" | translate }}</div>
+        </div>
+        <div
+          *ngIf="storageService.isLogged()"
+          class="side-links-link"
+          (click)="this.isMobileNavOpen = false"
+        >
+          <i class="icon-logout_black_24dp"></i>
+          <div>{{ "HEADER.LOGOUT" | translate }}</div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <nav class="web">
+    <div class="nav-links">
+      <img
+        class="cursor-pointer"
+        [routerLink]="['/pages/home']"
+        src="assets/images/logo.png"
+        alt="logo"
+      />
+      <a
+        class="nav-links-link"
+        [routerLink]="['/pages/home']"
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="open"
+      >
+        <i class="icon-grid_view_black_24dp"></i>
+        <div>{{ "HEADER.HOME" | translate }}</div>
+      </a>
+      <a
+        class="nav-links-link"
+        [routerLink]="['/pages/hotels']"
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="open"
+      >
+        <i class="icon-king_bed_black_24dp"></i>
+        <div>{{ "HEADER.HOTELS" | translate }}</div>
+      </a>
+      <a
+        class="nav-links-link"
+        [routerLink]="['/pages/static/contact']"
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="open"
+      >
+        <i class="icon-call_black_24dp"></i>
+        <div>{{ "HEADER.CONTACT" | translate }}</div>
+      </a>
+      <app-lang-picker></app-lang-picker>
+    </div>
+    <div class="nav-actions">
+      <app-user-picker *ngIf="storageService.isLogged()"></app-user-picker>
+      <button
+        *ngIf="!storageService.isLogged()"
+        (click)="isLoginOpen = true"
+        type="button"
+        class="btn btn-primary"
+      >
+        {{ "AUTH.LOGIN" | translate }}
+      </button>
+    </div>
+  </nav>
+</header>
+
+<app-login
+  *ngIf="isLoginOpen"
+  (close)="isLoginOpen = false; isForgotOpen = false; isResetOpen = false"
+  (openForgot)="isLoginOpen = false; isForgotOpen = true; isResetOpen = false"
+></app-login>
+<app-resetpassword
+  *ngIf="isResetOpen"
+  (close)="isLoginOpen = false; isForgotOpen = false; isResetOpen = false"
+></app-resetpassword>
+<app-forgotpassword
+  *ngIf="isForgotOpen"
+  (close)="isLoginOpen = false; isForgotOpen = false; isResetOpen = false"
+></app-forgotpassword>

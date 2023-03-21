@@ -1,0 +1,76 @@
+@import "variables";
+@import "mixins";
+@import "functions";
+:host {
+  .paginator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .action {
+      padding: 5px;
+      height: 30px;
+      width: 30px;
+      border-radius: 5px;
+      border: 1px solid $primary-color;
+      color: $primary-color;
+      background-color: $primary-tint-color;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      > i {
+        @extend .text-xl;
+      }
+
+      &.left {
+        [dir="ltr"] & {
+          transform: rotate(0deg);
+        }
+        [dir="rtl"] & {
+          transform: rotate(180deg);
+        }
+      }
+      &.right {
+        [dir="ltr"] & {
+          transform: rotate(180deg);
+        }
+        [dir="rtl"] & {
+          transform: rotate(0deg);
+        }
+      }
+      &.disabled {
+        pointer-events: none;
+        border: 1px solid $primary-shade-color;
+        color: $primary-shade-color;
+        background-color: $primary-tint-color;
+      }
+    }
+    .pages {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      [dir="ltr"] & {
+        flex-direction: row;
+      }
+      [dir="rtl"] & {
+        flex-direction: row-reverse;
+      }
+      &-item {
+        cursor: pointer;
+        height: 30px;
+        width: 30px;
+        color: $primary-shade-color;
+        padding: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        @extend .text-xs;
+        font-weight: 700;
+
+        &.active {
+          color: $primary-color;
+        }
+      }
+    }
+  }
+}

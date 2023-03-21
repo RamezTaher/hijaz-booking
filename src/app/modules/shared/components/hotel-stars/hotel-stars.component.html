@@ -1,0 +1,7 @@
+<div class="stars">
+  <i
+    *ngFor="let item of [].constructor(5); let i = index"
+    class="icon-star_black_24dp"
+    [ngClass]="{ active: i < stars }"
+  ></i>
+</div>

@@ -1,0 +1,28 @@
+<div class="picker">
+  <div
+    [ngClass]="{ open: isI18nPickerOpen }"
+    (click)="isI18nPickerOpen = !isI18nPickerOpen"
+    class="picker-i18n"
+    (clickAway)="clickOutside()"
+  >
+    <i class="flag"></i>
+    <div class="number">{{ i18nNumber }}</div>
+    <i class="icon-arrow_drop_down_black_24dp"></i>
+  </div>
+  <div class="input-form">
+    <input
+      [placeholder]="'INPUT.PHONE_NUMBER' | translate"
+      type="number"
+      [(ngModel)]="phoneNumber"
+    />
+  </div>
+  <div *ngIf="isI18nPickerOpen" class="picker-drop">
+    <div
+      *ngFor="let item of [].constructor(10)"
+      class="picker-drop-item"
+      (click)="onSelectI18n(item)"
+    >
+      {{ item }}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<div
+  (clickAway)="clickOutside()"
+  [ngClass]="{ 'picker-open': isAgeDropOpen }"
+  class="picker"
+>
+  <div
+    (click)="toggleAgeDrop()"
+    class="picker-section"
+    [ngClass]="{ 'picker-section-open': isAgeDropOpen }"
+  >
+    <div class="picker-section-title">
+      <div class="flex justify-start items-center gap-4">
+        <div>{{ ageSelected }} {{ "COMMON.YEAR" | translate }}</div>
+      </div>
+      <i class="icon-expand_more_black_24dp drop-arrow"></i>
+    </div>
+  </div>
+  <div *ngIf="isAgeDropOpen" class="picker-drop">
+    <div
+      (click)="clickAge(item, $event)"
+      class="picker-drop-item"
+      *ngFor="let item of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]"
+    >
+      {{ item }} {{ "COMMON.YEAR" | translate }}
+    </div>
+  </div>
+</div>

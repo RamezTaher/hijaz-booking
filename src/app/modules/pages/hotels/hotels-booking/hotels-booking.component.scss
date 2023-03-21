@@ -1,0 +1,445 @@
+@import "variables";
+@import "functions";
+@import "mixins";
+:host {
+  .bg {
+    background-color: $secondary-color;
+  }
+  .page {
+    background-color: $secondary-color;
+    padding: 60px 32px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 16px;
+
+    @media only screen and (min-width: $breakpoints-md) {
+      padding: 78px 0;
+      flex-direction: row;
+    }
+
+    &-coupon {
+      width: 100%;
+      @include shadow-2;
+      border-radius: 5px;
+      background-color: $primary-tint-color;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 16px;
+      padding: 15px;
+      > button {
+        height: 42px;
+        max-width: 70px;
+        @extend .text-xs;
+      }
+      > .input-form {
+        > .title {
+          font-weight: 700;
+        }
+        > input {
+          width: 100%;
+          padding: 12px;
+        }
+      }
+      &.web {
+        display: none;
+        @media only screen and (min-width: $breakpoints-md) {
+          display: flex;
+        }
+      }
+      &.mobile {
+        display: flex;
+        @media only screen and (min-width: $breakpoints-md) {
+          display: none;
+        }
+      }
+    }
+    &-details {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 30px;
+      @media only screen and (min-width: $breakpoints-md) {
+        width: 66.6666%;
+      }
+    }
+    &-price {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 30px;
+      @media only screen and (min-width: $breakpoints-md) {
+        width: 33.3333%;
+      }
+    }
+
+    &-hotel {
+      background-color: $secondary-tint-color;
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
+      flex-direction: column;
+      @media only screen and (min-width: $breakpoints-md) {
+        gap: 15px;
+        flex-direction: row;
+      }
+      border-radius: 5px;
+      @include shadow-2;
+      > img {
+        width: 100%;
+        height: 140px;
+        border-top-right-radius: 5px;
+        border-top-left-radius: 5px;
+        @media only screen and (min-width: $breakpoints-md) {
+          height: 160px;
+          width: 30%;
+          grid-column: span 2 / span 2;
+          [dir="rtl"] & {
+            border-top-right-radius: 5px;
+            border-top-left-radius: 0;
+            border-bottom-right-radius: 5px;
+          }
+          [dir="ltr"] & {
+            border-top-left-radius: 5px;
+            border-top-right-radius: 0;
+            border-bottom-left-radius: 5px;
+          }
+        }
+      }
+      &-desc {
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        &-dates {
+          margin-top: 10px;
+          display: flex;
+          align-items: center;
+          gap: 30px;
+          justify-content: space-between;
+
+          @media only screen and (min-width: $breakpoints-md) {
+            gap: 50px;
+          }
+          color: $dark-color;
+          font-weight: 700;
+          @extend .text-xs;
+
+          &-title {
+            font-weight: bold;
+            @extend .text-base;
+          }
+        }
+        &-title {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          @extend .text-sm;
+
+          &-pos {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            color: $dark-shade-color;
+            @extend .text-xs;
+            gap: 10px;
+          }
+          &-contact {
+            display: flex;
+            gap: 14px;
+            align-items: center;
+            justify-content: flex-start;
+            > div {
+              display: flex;
+              gap: 10px;
+              align-items: center;
+              justify-content: flex-start;
+              color: $primary-color;
+              @extend .text-xs;
+              > i {
+                @extend .text-xs;
+                color: $primary-color;
+              }
+              &:last-child {
+                [dir="rtl"] & {
+                  border-right: 1px solid $primary-shade-color;
+                  padding-right: 16px;
+                }
+                [dir="ltr"] & {
+                  border-left: 1px solid $primary-shade-color;
+                  padding-left: 16px;
+                }
+              }
+            }
+          }
+          &-text {
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            gap: 10px;
+            flex-wrap: wrap;
+            flex-direction: column;
+            font-weight: 700;
+            @extend .text-sm;
+            @media only screen and (min-width: $breakpoints-md) {
+              flex-direction: row;
+              align-items: center;
+              font-size: 1rem;
+              line-height: 1.5rem;
+            }
+          }
+        }
+      }
+    }
+    &-policy {
+      background-color: $secondary-tint-color;
+      width: 100%;
+      border-radius: 5px;
+      @include shadow-2;
+      padding: 15px 0px;
+      color: $dark-color;
+      &-title {
+        @extend .text-sm;
+        font-weight: 700;
+        padding: 0 15px;
+        @media only screen and (min-width: $breakpoints-md) {
+          font-size: 1rem;
+          line-height: 1.5rem;
+        }
+      }
+      &-room {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+        border-right: 3px solid $primary-color;
+        padding: 8px 15px;
+        @extend .text-xs;
+
+        @media only screen and (min-width: $breakpoints-md) {
+          font-size: 14px;
+          line-height: 1.25rem;
+        }
+      }
+    }
+    &-client,
+    &-demandes {
+      background-color: $secondary-tint-color;
+      width: 100%;
+      border-radius: 5px;
+      @include shadow-2;
+      padding: 20px 16px;
+      color: $dark-color;
+      &-title {
+        @extend .text-base;
+        font-weight: 700;
+        margin-bottom: 15px;
+        @media only screen and (min-width: $breakpoints-md) {
+          font-size: 1rem;
+          line-height: 1.5rem;
+        }
+      }
+      &-data {
+        &-form {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 15px;
+
+          .input-form {
+            > input {
+              padding: 12px;
+            }
+            > .title {
+              margin-bottom: 10px;
+            }
+            > textarea {
+              resize: none;
+              width: 100%;
+              height: 150px;
+            }
+          }
+          > div {
+            grid-column: span 2 / span 2;
+            @media only screen and (min-width: $breakpoints-md) {
+              grid-column: span 1 / span 1;
+            }
+          }
+        }
+        &-terms {
+          display: flex;
+          justify-content: flex-start;
+          > span {
+            position: relative;
+            top: -8px;
+            padding: 0 5px;
+            @extend .text-xs;
+            font-weight: 700;
+            top: -7px;
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+
+    &-demandes {
+      &-data {
+        &-form {
+          > div:first-child {
+            grid-column: span 2 / span 2;
+          }
+          > div:not(:first-child) {
+            @include respond(md) {
+              margin-top: 33px;
+              grid-column: span 1 / span 1;
+            }
+          }
+
+          &-disclamer {
+            @extend .text-xs;
+            color: $danger-color;
+          }
+        }
+
+        &-action {
+          gap: 20px;
+
+          > button {
+            width: 100%;
+            padding: 15px 37px;
+            font-weight: 700;
+            @extend .text-base;
+
+            @media only screen and (min-width: $breakpoints-md) {
+              width: fit-content;
+              [dir="rtl"] & {
+                margin-right: auto;
+              }
+              [dir="ltr"] & {
+                margin-left: auto;
+              }
+            }
+          }
+        }
+      }
+    }
+    &-invoice {
+      width: 100%;
+      justify-content: center;
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 16px;
+      &.mobile {
+        display: flex;
+        @media only screen and (min-width: $breakpoints-md) {
+          display: none;
+        }
+      }
+      &.web {
+        display: none;
+        @media only screen and (min-width: $breakpoints-md) {
+          display: flex;
+        }
+      }
+      &-desc {
+        padding: 16px;
+        width: 100%;
+        border-radius: 5px;
+        @include shadow-2;
+        @extend .text-sm;
+        background-color: $secondary-tint-color;
+        &-title {
+          @extend .text-lg;
+          font-weight: bold;
+          margin-bottom: 30px;
+        }
+        &-hotel {
+          @extend .text-sm;
+          border-bottom: 2px solid $primary-shade-color;
+          padding: 15px;
+          &-date {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            @extend .text-xs;
+          }
+        }
+        &-rooms {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+          > div {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            > h1 {
+              font-weight: bold;
+              @extend .text-sm;
+            }
+          }
+        }
+        &-room {
+          display: flex;
+          gap: 20px;
+          @extend .text-xs;
+          font-weight: bold;
+          > div {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            > i {
+              color: $primary-color;
+            }
+          }
+        }
+      }
+      &-money {
+        width: 100%;
+        border-radius: 5px;
+        @include shadow-2;
+        @extend .text-sm;
+        background-color: $secondary-tint-color;
+        > div {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 10px;
+        }
+        .tax,
+        .price {
+          padding: 15px 15px 0px 15px;
+        }
+        .tax {
+          margin-bottom: 15px;
+        }
+        &-total {
+          background-color: $primary-color;
+          color: $secondary-tint-color;
+          font-weight: 700;
+          padding: 15px;
+          border-bottom-left-radius: 6px;
+          border-bottom-right-radius: 6px;
+        }
+      }
+    }
+  }
+}
+.with-policy {
+  display: flex;
+  > app-policy-state {
+    padding: 0 10px;
+    align-items: baseline;
+  }
+}
+
+.checkmark-checkbox {
+  top: -5px;
+}

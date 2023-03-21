@@ -1,0 +1,53 @@
+@import "variables";
+@import "functions";
+@import "mixins";
+:host {
+  width: 100%;
+  min-width: fit-content;
+  .picker {
+    position: relative;
+
+    &-section {
+      width: 100%;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      i {
+        transition: all 0.1s ease-in-out;
+        color: $primary-color;
+        @extend .text-xl;
+        &.open {
+          transform: rotate(180deg);
+        }
+      }
+    }
+    &-drop {
+      position: absolute;
+      display: none;
+      background-color: $secondary-tint-color;
+      @include shadow;
+      width: 100%;
+      min-width: fit-content;
+      border-radius: 5px;
+      padding: 5px 0px;
+      &-item {
+        cursor: pointer;
+        color: $dark-color;
+        padding: 8px 14px;
+        @extend .text-xs;
+        text-transform: uppercase;
+        &:hover {
+          background-color: $primary-color;
+          color: $secondary-tint-color;
+        }
+        &:not(:last-child) {
+          margin-bottom: 6px;
+        }
+      }
+      @media only screen and (min-width: $breakpoints-md) {
+        display: block;
+      }
+    }
+  }
+}

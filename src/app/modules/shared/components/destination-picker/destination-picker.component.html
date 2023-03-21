@@ -1,0 +1,55 @@
+<div
+  (clickAway)="clickOutside()"
+  [ngClass]="{ 'picker-open': isLocationPickerOpen }"
+  class="picker"
+>
+  <div class="picker-section" (click)="toggleLocationPicker()">
+    <div class="picker-section-title">
+      <i class="icon-place_black_24dp"></i>
+      <div>
+        {{ "INPUT.PICK_DESTINATION" | translate }}
+      </div>
+    </div>
+    <div class="picker-section-text">
+      {{
+        this.selectedItem.text
+          ? this.selectedItem.text
+          : ("INPUT.PICK_DESTINATION" | translate)
+      }}
+      <i class="icon-expand_more_black_24dp mr-auto"></i>
+    </div>
+  </div>
+  <div *ngIf="isLocationPickerOpen" class="picker-drop">
+    <div
+      *ngFor="let item of directions"
+      class="picker-drop-item"
+      (click)="handleChange(item)"
+    >
+      <i class="icon-place_black_24dp"></i>
+      <div class="cursor-pointer">{{ item.text }}</div>
+    </div>
+  </div>
+  <div *ngIf="isLocationPickerOpen" class="picker-mobile">
+    <div class="picker-mobile-data">
+      <div class="picker-mobile-data-header">
+        <i
+          (click)="isLocationPickerOpen = false"
+          class="icon-close_black_24dp"
+        ></i>
+        <div class="w-full text-center">
+          {{ "INPUT.PICK_DESTINATION" | translate }}
+        </div>
+      </div>
+      <div class="px-5 w-full">
+        <div
+          *ngFor="let item of directions"
+          class="picker-mobile-data-item"
+          (click)="handleChange(item)"
+        >
+          <i class="icon-place_black_24dp"></i>
+          <div>{{ item.text }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

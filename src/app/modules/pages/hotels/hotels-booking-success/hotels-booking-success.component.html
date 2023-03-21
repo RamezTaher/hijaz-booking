@@ -1,0 +1,170 @@
+<div class="bg">
+  <div class="res">
+    <div class="container">
+      <div class="res-success">
+        <i class="icon-check_circle_outline_black_24dp"></i>
+        <div>{{ "VALIDATION.RES_CONFIRMED" | translate }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="page">
+      <div class="page-details">
+        <div class="page-hotel">
+          <img [src]="hotel.DefaultPicture" alt="Hotel Image" />
+          <div class="page-hotel-desc">
+            <div class="page-hotel-desc-title">
+              <div class="page-hotel-desc-title-text">
+                <h1>
+                  <div>{{ hotel?.NameAr ?? hotel?.Name }}</div>
+                </h1>
+                <app-hotel-stars [stars]="hotel.Stars"></app-hotel-stars>
+              </div>
+              <div class="page-hotel-desc-title-pos">
+                <i class="icon-place_black_24dp text-xs"></i>
+                {{ hotel.AdressAr ?? hotel.Adress }}
+              </div>
+              <div class="page-hotel-desc-title-contact">
+                <div>
+                  <i class="icon-call_black_24dp"></i>
+                  <div>0000000</div>
+                </div>
+                <div>
+                  <i class="icon-email_black_24dp"></i>
+                  <div>0@gmail.com</div>
+                </div>
+              </div>
+            </div>
+            <div class="page-hotel-desc-dates">
+              <div>
+                <div>{{ "HOTELS.ARRIVAL_DATE" | translate }}</div>
+                <div class="mt-1 success-color">
+                  {{ this.rooms[0].CheckIn | date: "longDate" }}
+                </div>
+              </div>
+              <div>
+                <div>{{ "HOTELS.DEPARTURE_DATE" | translate }}</div>
+                <div class="mt-1 success-color">
+                  {{ this.rooms[0].CheckOut | date: "longDate" }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--  -->
+        <div class="page-invoice">
+          <div class="page-invoice-desc">
+            <div class="page-invoice-desc-title">
+              {{ "HOTELS.RESERVATION_SUMMARY" | translate }}
+            </div>
+            <div class="page-invoice-desc-rooms">
+              <div *ngFor="let item of rooms">
+                <h1>
+                  {{ item.Quantity }} x
+                  {{ item.RoomTypeNameAr ?? item.RoomTypeName }}
+                </h1>
+                <div class="page-invoice-desc-room">
+                  <div>
+                    <i class="icon-king_bed_black_24dp"> </i>
+                    <div>{{ item.MealAr ?? item.Meal }}</div>
+                  </div>
+                  <div>
+                    <i class="icon-window_black_24dp"> </i>
+                    <div>{{ item.ViewNameAr ?? item.ViewName }}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="page-invoice-money">
+            <div class="price">
+              <div class="dark-shade-color">
+                {{ "COMMON.PRICE" | translate }}
+              </div>
+              <div class="font-bold">
+                {{ total_without_vat.toFixed(2) }}
+                {{ "COMMON.SAR_ABBRIVIATION" | translate }}
+              </div>
+            </div>
+            <div class="tax">
+              <div class="dark-shade-color">
+                {{ "COMMON.TAX" | translate }}
+              </div>
+              <div class="font-bold">
+                {{ total_vat.toFixed(2)
+                }}{{ "COMMON.SAR_ABBRIVIATION" | translate }}
+              </div>
+            </div>
+            <div class="page-invoice-money-total">
+              <div>
+                {{ "COMMON.TOTAL_PRICE" | translate }}
+              </div>
+              <div class="text-2xl">
+                {{ total_price.toFixed(2) }}
+                {{ "COMMON.SAR_ABBRIVIATION" | translate }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="page-passenger mobile">
+          <div class="page-resume">
+            <div class="page-resume-title">
+              {{ "HOTELS.PASSENGER_DATA" | translate }}
+            </div>
+            <div class="page-resume-info">
+              <div>
+                <div class="font-bold">{{ "HOTELS.EMAIL" | translate }}:</div>
+                <div>{{ storageService.guest.email }}</div>
+              </div>
+              <div>
+                <div class="font-bold">
+                  {{ "HOTELS.PHONE_NUMBER" | translate }}:
+                </div>
+                <div>{{ storageService.guest.phoneNumber }}</div>
+              </div>
+            </div>
+            <div class="page-resume-info">
+              <div>
+                <div class="font-bold">{{ "HOTELS.BRN" | translate }}:</div>
+                <div class="page-resume-info-ticket">
+                  <div>MQM123516</div>
+                  <i class="icon-content_copy_black_24dp"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="page-passenger web">
+        <div class="page-resume">
+          <div class="page-resume-title">
+            {{ "HOTELS.PASSENGER_DATA" | translate }}
+          </div>
+          <div class="page-resume-info">
+            <div>
+              <div class="font-bold">{{ "HOTELS.EMAIL" | translate }}:</div>
+              <div>{{ storageService.guest.email }}</div>
+            </div>
+            <div>
+              <div class="font-bold">
+                {{ "HOTELS.PHONE_NUMBER" | translate }}:
+              </div>
+              <div>{{ storageService.guest.phoneNumber }}</div>
+            </div>
+          </div>
+          <div class="page-resume-info">
+            <div>
+              <div class="font-bold">{{ "HOTELS.BRN" | translate }}:</div>
+              <div class="page-resume-info-ticket">
+                <div>MQM123516</div>
+                <i class="icon-content_copy_black_24dp"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

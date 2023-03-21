@@ -1,0 +1,40 @@
+<div class="card" (click)="goToDetails()">
+  <div class="card-image">
+    <img [src]="hotel.DefaultPicture ?? '/assets/images/no-image.jpg'" alt="" />
+  </div>
+  <div class="card-info">
+    <div class="card-info-data">
+      <div class="card-info-data-title">
+        {{ hotel?.NameAr }} - {{ hotel?.provider }}
+      </div>
+
+      <div class="card-info-data-info">
+        <app-hotel-stars [stars]="hotel?.Stars"></app-hotel-stars>
+        <div class="card-info-data-info-pos">
+          <i class="icon-place_black_24dp"></i>
+          <div>{{ hotel.AdressAr ?? hotel.Adress }}</div>
+        </div>
+      </div>
+      <div class="card-info-data-services">
+        <div class="card-info-data-services-facilities">
+          <i class="icon-wifi_black_24dp"></i>
+          <i class="icon-ac_unit_black_24dp"></i>
+          <i class="icon-restaurant_black_24dp"></i>
+          <i class="icon-fitness_center_black_24dp"></i>
+        </div>
+      </div>
+    </div>
+    <div class="card-info-price">
+      <div class="card-info-price-amount">
+        {{ getLowestPrice(hotel?.BookableRooms)
+        }}<span>{{ "COMMON.SAR" | translate }}</span>
+      </div>
+      <div class="card-info-price-tax">
+        {{ "HOTELS.PRICE_WITH_TAX" | translate }}
+      </div>
+      <button (click)="goToDetails()" class="btn btn-primary-shade">
+        {{ "BUTTON.BOOK_NOW" | translate }}
+      </button>
+    </div>
+  </div>
+</div>

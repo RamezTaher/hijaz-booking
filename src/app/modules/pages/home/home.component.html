@@ -1,0 +1,110 @@
+<div class="page">
+  <div class="page-search">
+    <img class="web" src="assets/images/home.png" alt="home image" />
+    <img class="mobile" src="assets/images/home.png" alt="home image" />
+    <h1>
+      <div>{{ "HOME.RES_HOTEL" | translate }}</div>
+      <div class="separator"></div>
+    </h1>
+
+    <div class="form">
+      <h1>
+        <span>
+          {{ "HOME.TITLE_HIGHLIGHT" | translate }}
+        </span>
+        <div>{{ "HOME.TITLE" | translate }}</div>
+      </h1>
+      <div class="inputs mobile">
+        <app-destination-picker
+          [value]="queries?.city"
+          (locationChange)="addLocation($event)"
+        ></app-destination-picker>
+        <app-date-range-picker
+          (dateChange)="addDate($event)"
+        ></app-date-range-picker>
+        <div class="coupon">
+          <div class="title">
+            <i class="icon-promo-code"></i>
+            <div>
+              {{ "INPUT.SPECIAL_CODE" | translate }}
+            </div>
+          </div>
+          <div class="text">
+            <input
+              (ngModelChange)="onCouponChange($event)"
+              type="text"
+              [placeholder]="'INPUT.SPECIAL_CODE' | translate"
+              [(ngModel)]="currentPromocode"
+            />
+          </div>
+        </div>
+
+        <button (click)="goToSearch()" class="btn btn-primary">
+          <i class="icon-search_black_24dp"></i>
+          <div>{{ "BUTTON.SEARCH" | translate }}</div>
+        </button>
+      </div>
+    </div>
+    <div class="inputs web">
+      <app-destination-picker
+        [value]="queries?.city"
+        (locationChange)="addLocation($event)"
+      ></app-destination-picker>
+      <app-date-range-picker
+        (dateChange)="addDate($event)"
+      ></app-date-range-picker>
+      <div class="coupon">
+        <div class="title">
+          <i class="icon-promo-code"></i>
+          <div>
+            {{ "INPUT.SPECIAL_CODE" | translate }}
+          </div>
+        </div>
+        <div class="text">
+          <input
+            (ngModelChange)="onCouponChange($event)"
+            type="text"
+            [placeholder]="'INPUT.SPECIAL_CODE' | translate"
+            [(ngModel)]="currentPromocode"
+          />
+        </div>
+      </div>
+
+      <button (click)="goToSearch()" class="btn btn-primary">
+        <i class="icon-search_black_24dp"></i>
+        <div>{{ "BUTTON.SEARCH" | translate }}</div>
+      </button>
+    </div>
+  </div>
+
+  <div class="page-hotels">
+    <h1>
+      <div>{{ "HOME.HOTELS" | translate }}</div>
+    </h1>
+
+    <div
+      *ngIf="(httpService.state$ | async)?.loading"
+      class="page-hotels-items"
+    >
+      <app-card-loading></app-card-loading>
+    </div>
+
+    <div
+      *ngIf="!(httpService.state$ | async)?.loading"
+      class="page-hotels-items"
+    >
+      <app-hotel-card
+        (click)="goToDetails(item)"
+        [hotel]="item"
+        *ngFor="let item of (httpService.state$ | async)?.data"
+      ></app-hotel-card>
+    </div>
+  </div>
+
+  <app-modal
+    (handleCloseEvent)="closeErrorModal()"
+    *ngIf="modalError.isShown"
+    [text]="modalError.text"
+    [type]="modalError.type"
+  ></app-modal>
+</div>

@@ -1,0 +1,162 @@
+@import "variables";
+@import "functions";
+@import "mixins";
+:host {
+  width: 100%;
+  .picker {
+    position: relative;
+
+    &-section {
+      width: 100%;
+      cursor: pointer;
+      &.mobile {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        i {
+          color: $primary-color;
+          @extend .text-xl;
+          [dir="ltr"] & {
+            transform: rotate(180deg);
+          }
+        }
+        @media only screen and (min-width: $breakpoints-md) {
+          display: none;
+        }
+      }
+      &.web {
+        display: none;
+        justify-content: space-between;
+        align-items: center;
+        @extend .text-xs;
+        font-weight: 700;
+        color: $secondary-tint-color;
+        i {
+          color: $secondary-tint-color;
+          @extend .text-sm;
+          transition: all 0.1s ease-in-out;
+        }
+        @media only screen and (min-width: $breakpoints-md) {
+          display: flex;
+        }
+      }
+    }
+    &-drop {
+      position: absolute;
+      display: none;
+      background-color: $secondary-tint-color;
+      @include shadow;
+      width: 100%;
+      border-radius: 5px;
+      padding: 5px 0px;
+      &-item {
+        cursor: pointer;
+        color: $dark-color;
+        padding: 8px 14px;
+        @extend .text-xs;
+        text-transform: uppercase;
+        &:hover {
+          background-color: $primary-color;
+          color: $secondary-tint-color;
+        }
+        &:not(:last-child) {
+          margin-bottom: 6px;
+        }
+      }
+      @media only screen and (min-width: $breakpoints-md) {
+        display: block;
+      }
+    }
+    &-drop-mobile {
+      position: fixed;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      [dir="rtl"] & {
+        right: 0;
+      }
+      [dir="ltr"] & {
+        left: 0;
+      }
+      &-data {
+        overflow-x: auto;
+        height: 100%;
+        margin-top: 5px;
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        background-color: $secondary-tint-color;
+        bottom: 0;
+        @include shadow-md;
+        &-header {
+          width: 100%;
+          color: $dark-color;
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          margin-bottom: 20px;
+          @extend .text-base;
+          font-weight: 700;
+          @include shadow-md;
+          padding: 20px;
+          > i {
+            cursor: pointer;
+            @extend .text-2xl;
+            color: $dark-color;
+          }
+        }
+        &-item {
+          position: relative;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 8px;
+          @extend .text-base;
+          font-weight: 400;
+          width: 100%;
+          padding-bottom: 10px;
+          cursor: pointer;
+          > i {
+            @extend .text-lg;
+          }
+          > i.check {
+            color: $primary-color;
+          }
+          &:not(:last-child) {
+            margin-bottom: 10px;
+            border-bottom: 1px solid $primary-shade-color;
+          }
+          &:hover {
+            color: $primary-color;
+            i {
+              color: $primary-color;
+            }
+          }
+        }
+      }
+      @media only screen and (min-width: $breakpoints-md) {
+        display: none;
+      }
+    }
+    &-dark {
+      .picker-section.web {
+        color: $dark-color;
+        i {
+          color: $primary-color;
+        }
+      }
+    }
+  }
+  @media only screen and (min-width: $breakpoints-md) {
+    max-width: fit-content;
+  }
+  .open {
+    &.picker-section.web {
+      > i {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}

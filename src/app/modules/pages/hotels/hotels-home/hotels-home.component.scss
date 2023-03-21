@@ -1,0 +1,58 @@
+@import "variables";
+@import "functions";
+@import "mixins";
+
+:host {
+  .page {
+    padding-top: 61px;
+    @media only screen and (min-width: $breakpoints-md) {
+      padding-top: 0;
+    }
+
+    &-hotels {
+      padding: 60px 37px;
+      > h1 {
+        @extend .text-3xl;
+        font-weight: bold;
+        margin-bottom: 48px;
+
+        @media screen and (min-width: $breakpoints-md) {
+          font-size: 24px;
+        }
+      }
+
+      &-items {
+        display: grid;
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        gap: 16px;
+        @media screen and (min-width: $breakpoints-md) {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        > app-hotel-card {
+          grid-column: span 1 / span 1;
+        }
+      }
+
+      &-pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 40px;
+        @media only screen and (min-width: $breakpoints-md) {
+          margin-top: 65px;
+        }
+      }
+
+      @media only screen and (min-width: $breakpoints-md) {
+        padding: 120px 90px;
+      }
+      @media only screen and (min-width: $breakpoints-lg) {
+        padding: 120px 100px;
+      }
+      @media only screen and (min-width: $breakpoints-xl) {
+        padding: 120px 138px;
+      }
+    }
+  }
+}

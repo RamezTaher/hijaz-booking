@@ -1,0 +1,62 @@
+@import "variables";
+@import "mixins";
+@import "placeholders";
+.background {
+  position: fixed;
+  width: 100%;
+  z-index: 50;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba($color: #000, $alpha: 0.4);
+}
+.modal {
+  background-color: $secondary-tint-color;
+  position: fixed;
+  border-radius: 16px;
+  width: 510px;
+  height: 300px;
+  padding-bottom: 20px;
+  top: calc(50% - 400px / 2);
+  right: calc(50% - 510px / 2);
+
+  color: $primary-color;
+  &-header {
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    padding: 20px;
+    &-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 5px;
+      i {
+        position: absolute;
+        left: 20px;
+      }
+    }
+  }
+  &-body {
+    text-align: center;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    padding: 20px;
+  }
+}
+
+.btn-ok {
+  width: 100%;
+  height: 40px;
+}
+.text-content {
+  padding: 20px 0;
+  text-align: center;
+  min-height: 90px;
+  line-height: 1.2;
+}
+.options {
+  display: flex;
+  button {
+    margin: 0 10px;
+  }
+}

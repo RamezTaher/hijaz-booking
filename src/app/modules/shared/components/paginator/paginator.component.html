@@ -1,0 +1,39 @@
+<div class="paginator">
+  <div
+    [ngClass]="{ disabled: currentPage === pageCount }"
+    (click)="next()"
+    class="action left"
+  >
+    <i class="icon-chevron_left_black_24dp"></i>
+  </div>
+  <div class="pages">
+    <div
+      *ngIf="pageCount > 3 && currentPage > 3"
+      class="pages-item"
+      [ngClass]="{ active: pageCount === currentPage }"
+    >
+      {{ pageCount }}
+    </div>
+    <div
+      *ngFor="let item of pages(pageCount).slice(0, 3)"
+      class="pages-item"
+      [ngClass]="{ active: item === currentPage }"
+    >
+      {{ item }}
+    </div>
+    <div
+      *ngIf="pageCount > 3"
+      class="pages-item"
+      [ngClass]="{ active: pageCount === currentPage }"
+    >
+      {{ pageCount }}
+    </div>
+  </div>
+  <div
+    [ngClass]="{ disabled: currentPage <= 1 }"
+    (click)="previous()"
+    class="action right"
+  >
+    <i class="icon-chevron_left_black_24dp"></i>
+  </div>
+</div>

@@ -1,0 +1,335 @@
+<div class="bg">
+  <div class="container">
+    <div class="page">
+      <div class="page-details">
+        <div class="page-hotel">
+          <img
+            [src]="(this.httpsService.state$ | async)?.data?.DefaultPicture"
+            alt="hotel image"
+          />
+          <div class="page-hotel-desc">
+            <div class="page-hotel-desc-title">
+              <div class="page-hotel-desc-title-text">
+                {{ (this.httpsService.state$ | async)?.data?.NameAr }}
+                <app-hotel-stars
+                  [stars]="(this.httpsService.state$ | async)?.data?.Stars"
+                ></app-hotel-stars>
+              </div>
+              <div class="page-hotel-desc-title-pos">
+                <i class="icon-place_black_24dp text-xs"></i>
+                {{
+                  (this.httpsService.state$ | async)?.data?.AdressAr ??
+                    (this.httpsService.state$ | async)?.data?.Adress
+                }}
+              </div>
+              <div class="page-hotel-desc-title-contact">
+                <div>
+                  <i class="icon-call_black_24dp"></i>
+                  <div>
+                    <bdi>125913340</bdi>
+                  </div>
+                </div>
+                <div>
+                  <i class="icon-email_black_24dp"></i>
+                  <div>Krawahel@gmail.com</div>
+                </div>
+              </div>
+            </div>
+            <div class="page-hotel-desc-dates">
+              <div>
+                <div class="page-hotel-desc-dates-title">
+                  {{ "HOTELS.ARRIVAL_DATE" | translate }}
+                </div>
+                <div class="mt-1 success-color">
+                  {{ this.rooms[0].CheckIn | date: "longDate" }}
+                </div>
+              </div>
+              <div>
+                <div class="page-hotel-desc-dates-title">
+                  {{ "HOTELS.DEPARTURE_DATE" | translate }}
+                </div>
+                <div class="mt-1 success-color">
+                  {{ this.rooms[0].CheckOut | date: "longDate" }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="page-invoice mobile">
+          <div class="page-invoice-desc">
+            <div class="page-invoice-desc-title">
+              {{ "HOTELS.RESERVATION_SUMMARY" | translate }}
+            </div>
+            <div class="page-invoice-desc-rooms">
+              <div *ngFor="let item of rooms">
+                <h1>
+                  {{ item.Quantity }} x
+                  {{ item.RoomTypeNameAr ?? item.RoomTypeName }}
+                </h1>
+                <div class="page-invoice-desc-room">
+                  <div>
+                    <i class="icon-king_bed_black_24dp"> </i>
+                    <div>{{ item.MealAr ?? item.Meal }}</div>
+                  </div>
+                  <div>
+                    <i class="icon-window_black_24dp"> </i>
+                    <div>{{ item.ViewNameAr ?? item.ViewName }}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="page-invoice-money">
+            <div class="price">
+              <div class="dark-shade-color">
+                {{ "COMMON.PRICE" | translate }}
+              </div>
+              <div class="font-bold">
+                {{ total_without_vat.toFixed(2) }}
+                {{ "COMMON.SAR_ABBRIVIATION" | translate }}
+              </div>
+            </div>
+            <div class="tax">
+              <div class="dark-shade-color">
+                {{ "COMMON.TAX" | translate }}
+              </div>
+              <div class="font-bold">
+                {{ total_vat.toFixed(2) }}
+                {{ "COMMON.SAR_ABBRIVIATION" | translate }}
+              </div>
+            </div>
+            <div class="page-invoice-money-total">
+              <div>
+                {{ "COMMON.TOTAL_PRICE" | translate }}
+              </div>
+              <div class="text-2xl">
+                {{ total_price.toFixed(2) }}
+                {{ "COMMON.SAR_ABBRIVIATION" | translate }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="page-invoice web">
+          <div class="page-invoice-desc">
+            <div class="page-invoice-desc-title">
+              {{ "HOTELS.RESERVATION_SUMMARY" | translate }}
+            </div>
+            <div class="page-invoice-desc-rooms">
+              <div *ngFor="let item of rooms">
+                <h1>
+                  {{ item.Quantity }} x
+                  {{ item.RoomTypeNameAr ?? item.RoomTypeName }}
+                </h1>
+                <div class="page-invoice-desc-room">
+                  <div>
+                    <i class="icon-king_bed_black_24dp"> </i>
+                    <div>{{ item.MealAr ?? item.Meal }}</div>
+                  </div>
+                  <div>
+                    <i class="icon-window_black_24dp"> </i>
+                    <div>{{ item.ViewNameAr ?? item.ViewName }}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="page-client">
+          <div class="page-client-title">
+            {{ "HOTELS.PRINCIPAL_GUEST_DATA" | translate }}
+          </div>
+          <div class="page-client-data">
+            <form [formGroup]="user_form" class="page-client-data-form">
+              <div class="input-form">
+                <div class="title">{{ "INPUT.FIRST_NAME" | translate }}</div>
+                <input
+                  name="firstName"
+                  formControlName="firstName"
+                  [placeholder]="'INPUT.FIRST_NAME' | translate"
+                  type="text"
+                />
+                <div
+                  class="error-msg"
+                  *ngIf="
+                    user_form.controls['firstName'].touched &&
+                    user_form.controls['firstName'].invalid
+                  "
+                >
+                  {{ "VALIDATION.REQUIRED" | translate }}
+                </div>
+              </div>
+              <div class="input-form">
+                <div class="title">{{ "INPUT.LAST_NAME" | translate }}</div>
+                <input
+                  name="lastName"
+                  formControlName="lastName"
+                  [placeholder]="'INPUT.LAST_NAME' | translate"
+                  type="text"
+                />
+                <div
+                  class="error-msg"
+                  *ngIf="
+                    user_form.controls['lastName'].touched &&
+                    user_form.controls['lastName'].invalid
+                  "
+                >
+                  {{ "VALIDATION.REQUIRED" | translate }}
+                </div>
+              </div>
+
+              <div class="input-form">
+                <div class="title">{{ "INPUT.EMAIL" | translate }}</div>
+                <input
+                  name="email"
+                  formControlName="email"
+                  [placeholder]="'INPUT.EMAIL' | translate"
+                  type="text"
+                />
+                <div
+                  class="error-msg"
+                  *ngIf="
+                    user_form.controls['email'].touched &&
+                    user_form.controls['email'].invalid
+                  "
+                >
+                  {{ "VALIDATION.REQUIRED" | translate }}
+                </div>
+              </div>
+              <div class="input-form">
+                <div class="title">{{ "INPUT.PHONE_NUMBER" | translate }}</div>
+                <input
+                  name="phone"
+                  name="phoneNumber"
+                  formControlName="phoneNumber"
+                  [placeholder]="'INPUT.PHONE_NUMBER' | translate"
+                  type="text"
+                />
+                <div
+                  class="error-msg"
+                  *ngIf="
+                    user_form.controls['phoneNumber'].touched &&
+                    user_form.controls['phoneNumber'].invalid
+                  "
+                >
+                  {{ "VALIDATION.REQUIRED" | translate }}
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="page-demandes">
+          <div class="page-demandes-title">
+            {{ "HOTELS.SPECIAL_DEMANDES" | translate }}
+          </div>
+          <div class="page-demandes-data">
+            <form [formGroup]="user_form" class="page-demandes-data-form">
+              <div class="input-form">
+                <textarea
+                  rows="3"
+                  name="b2BAgentNotes"
+                  formControlName="b2BAgentNotes"
+                  [placeholder]="'INPUT.NOTES' | translate"
+                  type="text"
+                ></textarea>
+                <div class="mt-1 mb-1 page-demandes-data-form-disclamer">
+                  لا يمكن ضمان الطلبات الخاصة - لكن سنبذل قصارى جهدنا لتلبية
+                  احتياجاتك.
+                </div>
+              </div>
+
+              <div
+                [ngClass]="{
+                  error:
+                    user_form.controls['terms'].touched &&
+                    (!user_form.controls['terms'].value ||
+                      user_form.controls['terms'].invalid)
+                }"
+                class="input-form"
+              >
+                <div class="page-demandes-data-terms">
+                  <label class="container-checkbox">
+                    <input formControlName="terms" type="checkbox" />
+                    <span class="checkmark-checkbox text-xs"></span>
+                  </label>
+                  <span class="text-xs">
+                    {{ "INPUT.I_AGREE" | translate }}
+                    <span class="term"
+                      ><a
+                        class="font-bold primary-color"
+                        target="_blank"
+                        [routerLink]="['/pages/terms-of-use']"
+                      >
+                        {{ "FOOTER.TERMS_AND_CONDITIONS" | translate }}</a
+                      ></span
+                    >
+                  </span>
+                </div>
+                <div
+                  class="error-msg"
+                  *ngIf="
+                    user_form.controls['terms'].touched &&
+                    (!user_form.controls['terms'].value ||
+                      user_form.controls['terms'].invalid)
+                  "
+                >
+                  {{ "VALIDATION.REQUIRED" | translate }}
+                </div>
+              </div>
+
+              <div class="page-demandes-data-action">
+                <div></div>
+                <button
+                  (click)="goToPaiement()"
+                  type="button"
+                  class="btn btn-primary"
+                >
+                  {{ "BUTTON.GO_CHECKOUT" | translate }}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="page-price">
+        <div class="page-invoice web">
+          <div class="page-invoice-money">
+            <div class="price">
+              <div class="dark-shade-color">
+                {{ "COMMON.PRICE" | translate }}
+              </div>
+              <div class="font-bold">
+                {{ total_without_vat.toFixed(2) }}
+                {{ "COMMON.SAR_ABBRIVIATION" | translate }}
+              </div>
+            </div>
+            <div class="tax">
+              <div class="dark-shade-color">
+                {{ "COMMON.TAX" | translate }}
+              </div>
+              <div class="font-bold">
+                {{ total_vat.toFixed(2)
+                }}{{ "COMMON.SAR_ABBRIVIATION" | translate }}
+              </div>
+            </div>
+            <div class="page-invoice-money-total">
+              <div>
+                {{ "COMMON.TOTAL_PRICE" | translate }}
+              </div>
+              <div class="text-2xl">
+                {{ total_price.toFixed(2) }}
+                {{ "COMMON.SAR_ABBRIVIATION" | translate }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-modal
+  (handleCloseEvent)="closeErrorModal()"
+  *ngIf="modalError.isShown"
+  [text]="modalError.text"
+  [type]="modalError.type"
+></app-modal>

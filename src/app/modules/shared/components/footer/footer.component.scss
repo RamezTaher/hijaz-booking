@@ -1,0 +1,89 @@
+@import "variables";
+@import "functions";
+@import "mixins";
+:host {
+  background-color: $secondary-tint-color;
+  footer {
+    border-top: 1px solid $primary-tint-color;
+    padding: 0 37px;
+    @media only screen and (min-width: $breakpoints-md) {
+      padding: 0;
+    }
+    .section {
+      &-links {
+        display: grid;
+        width: 100%;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: center;
+        justify-items: center;
+        gap: 24px;
+        border-bottom: 1px solid $secondary-shade-color;
+        padding: 16px 0px;
+        @media only screen and (min-width: $breakpoints-md) {
+          grid-template-columns: repeat(9, minmax(0, 1fr));
+          border-bottom: none;
+          gap: 12px;
+        }
+        .logos {
+          grid-column: span 2 / span 2;
+          justify-content: center;
+          > img {
+            &.mobile {
+              @media only screen and (min-width: $breakpoints-md) {
+                display: none;
+              }
+            }
+            &.web {
+              display: none;
+              width: 140px;
+              @media only screen and (min-width: $breakpoints-md) {
+                display: block;
+              }
+            }
+          }
+        }
+        &-link {
+          grid-column: span 1 / span 1;
+          &:last-child {
+            grid-column: span 2 / span 2;
+          }
+          @media only screen and (min-width: $breakpoints-md) {
+            grid-column: span 1 / span 1;
+          }
+          a {
+            text-decoration: none;
+            color: $dark-color;
+            font-weight: bold;
+            @extend .text-base;
+            @media only screen and (min-width: $breakpoints-md) {
+              font-size: 12px;
+              line-height: 1rem;
+            }
+            &:hover {
+              color: $dark-shade-color;
+            }
+          }
+        }
+      }
+      &-rights {
+        margin-top: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        > div {
+          text-align: center;
+          width: 100%;
+          padding: 8px 0;
+          border-bottom: 3px solid $primary-color;
+          @media only screen and (min-width: $breakpoints-md) {
+            width: fit-content;
+          }
+        }
+        @media only screen and (min-width: $breakpoints-md) {
+          justify-content: center;
+          align-items: center;
+        }
+      }
+    }
+  }
+}

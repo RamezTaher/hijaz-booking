@@ -1,0 +1,27 @@
+<div
+  (clickAway)="clickOutside()"
+  [ngClass]="{ 'picker-open': isItemPickerOpen }"
+  class="picker"
+>
+  <div class="picker-section" (click)="toggleItemPicker()">
+    <input
+      (input)="onInputSearch($event)"
+      type="text"
+      value="{{ selectedItem && selectedItem[config.valueField] }}"
+    />
+    <i class="icon-expand_more_black_24dp mr-auto"></i>
+  </div>
+  <div *ngIf="isItemPickerOpen" class="picker-drop">
+    <div
+      (click)="onCheckItem(item)"
+      *ngFor="let item of filteredItems"
+      class="picker-drop-item cursor-pointer"
+    >
+      <div>{{ item[config.valueField] }}</div>
+      <label class="container-radio">
+        <input [checked]="item === selectedItem" type="radio" />
+        <span class="checkmark-radio"></span>
+      </label>
+    </div>
+  </div>
+</div>

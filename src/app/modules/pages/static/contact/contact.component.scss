@@ -1,0 +1,79 @@
+@import "variables";
+@import "functions";
+@import "mixins";
+
+:host {
+  .page {
+    background-color: #f2f7f9;
+    padding-top: 60px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    @media only screen and (min-width: $breakpoints-md) {
+      flex-direction: row-reverse;
+      padding-top: 0px;
+    }
+    &-header {
+      position: relative;
+      @media only screen and (min-width: $breakpoints-md) {
+        width: 90%;
+      }
+
+      > img {
+        position: relative;
+        object-fit: cover;
+        width: 100%;
+        max-height: 200px;
+
+        @media only screen and (min-width: $breakpoints-md) {
+          min-height: 100vh;
+        }
+      }
+    }
+    .container {
+      padding: 32px;
+      padding-bottom: 0px;
+      height: calc(100% - 200px);
+      @media only screen and (min-width: $breakpoints-md) {
+        padding: 32px 80px;
+        height: 100%;
+        padding-bottom: 0px;
+      }
+    }
+    &-body {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      @media only screen and (min-width: $breakpoints-md) {
+        padding-top: 150px;
+      }
+      > h1 {
+        color: $dark-color;
+        @extend .text-2xl;
+        font-weight: 700;
+        margin-bottom: 50px;
+
+        > .separator {
+          margin-top: 6px;
+          height: 3px;
+          background-color: $primary-color;
+          width: 70px;
+        }
+      }
+      > div {
+        display: flex;
+        justify-content: flex-start;
+        gap: 10px;
+        align-items: center;
+        max-width: 250px;
+        i {
+          color: $primary-color;
+          @extend .text-lg;
+        }
+        &.pos {
+          align-items: flex-start;
+        }
+      }
+    }
+  }
+}

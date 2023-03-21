@@ -1,0 +1,274 @@
+@import "variables";
+@import "functions";
+@import "mixins";
+
+:host {
+  .page {
+    padding-top: 61px;
+    @media only screen and (min-width: $breakpoints-md) {
+      padding-top: 0;
+    }
+    &-search {
+      background-color: #f2f7f9;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+
+      @media only screen and (min-width: $breakpoints-md) {
+        padding-top: 80px;
+        flex-direction: row-reverse;
+        border-bottom: 1px solid $primary-tint-color;
+      }
+      > img {
+        position: relative;
+        &.web {
+          display: none;
+          @media only screen and (min-width: $breakpoints-md) {
+            display: block;
+          }
+        }
+        &.mobile {
+          display: block;
+          @media only screen and (min-width: $breakpoints-md) {
+            display: none;
+          }
+        }
+        object-fit: cover;
+        width: 100%;
+        max-height: 350px;
+
+        @media only screen and (min-width: $breakpoints-md) {
+          min-height: 720px;
+          max-height: 100%;
+          width: 50%;
+        }
+      }
+      > h1 {
+        color: $secondary-tint-color;
+        position: absolute;
+        top: 16px;
+        padding-bottom: 8px;
+        margin-top: 40px;
+        @extend .text-3xl;
+        font-weight: bold;
+
+        > .separator {
+          margin-top: 6px;
+          height: 3px;
+          background-color: $primary-color;
+          width: 80px;
+        }
+
+        [dir="rtl"] & {
+          right: 37px;
+        }
+        [dir="ltr"] & {
+          left: 37px;
+        }
+
+        @media only screen and (min-width: $breakpoints-md) {
+          display: none;
+        }
+      }
+
+      .inputs {
+        &.web {
+          display: none;
+          @media only screen and (min-width: $breakpoints-md) {
+            display: grid;
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -40%);
+          }
+        }
+        &.mobile {
+          display: grid;
+          @media only screen and (min-width: $breakpoints-md) {
+            display: none;
+          }
+        }
+        gap: 10px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        > * {
+          grid-column: span 2 / span 2;
+        }
+        .icon-arrows {
+          border-radius: 5px;
+          display: none;
+          justify-content: center;
+          align-items: center;
+          width: 30px;
+          height: 30px;
+          background-color: $primary-color;
+          grid-column: span 1 / span 1;
+          justify-self: center;
+          align-self: center;
+          > i {
+            color: $secondary-tint-color;
+          }
+          @media only screen and (min-width: $breakpoints-md) {
+            display: flex;
+          }
+        }
+        > .coupon {
+          grid-column: span 2 / span 2;
+          cursor: pointer;
+          display: flex;
+          justify-content: flex-start;
+          flex-direction: column;
+          padding: 8px 16px;
+          color: $dark-color;
+          border-radius: 5px;
+          width: 100%;
+          font-weight: 600;
+          background-color: $secondary-tint-color;
+          border-radius: 5px;
+          border: 1px solid $primary-shade-color;
+          i {
+            transition: all 0.1s ease-in-out;
+          }
+          .title {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 8px;
+            color: $primary-color;
+            @extend .text-xs;
+            font-weight: 700;
+            > i {
+              @extend .text-xs;
+            }
+          }
+          .text {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            @extend .text-sm;
+            font-weight: 400;
+            > i {
+              color: $primary-color;
+            }
+            > input {
+              border: none;
+              padding: 0px;
+
+              color: $dark-color;
+              background-color: transparent;
+              @extend .text-sm;
+              font-weight: 400;
+              height: fit-content;
+              &:hover,
+              &:focus {
+                background-color: transparent;
+              }
+            }
+          }
+          @media only screen and (min-width: $breakpoints-md) {
+            & {
+              grid-column: span 2 / span 2;
+            }
+          }
+        }
+        @media only screen and (min-width: $breakpoints-md) {
+          gap: 15px;
+          grid-template-columns: repeat(13, minmax(0, 1fr));
+          > * {
+            grid-column: span 2 / span 2;
+          }
+          > app-destination-picker {
+            grid-column: span 3 / span 3;
+          }
+          > app-date-range-picker {
+            grid-column: span 6 / span 6;
+          }
+        }
+        > button {
+          padding: 10px 25px;
+          gap: 12px;
+          > i {
+            @extend .text-2xl;
+          }
+          @media only screen and (min-width: $breakpoints-md) {
+          }
+        }
+        @media only screen and (min-width: $breakpoints-md) {
+          width: 80%;
+          background-color: $secondary-tint-color;
+          padding: 16px;
+          border-radius: 10px;
+          @include shadow-md;
+        }
+      }
+
+      .form {
+        width: 100%;
+        max-width: 800px;
+        padding: 32px;
+        @media only screen and (min-width: $breakpoints-md) {
+          padding: 0;
+        }
+
+        > h1 {
+          display: none;
+          color: $dark-color;
+          @extend .text-6xl;
+          font-weight: 700;
+          line-height: 80px;
+          [dir="rtl"] & {
+            padding-right: 138px;
+          }
+          [dir="ltr"] & {
+            padding-left: 138px;
+          }
+          > span {
+            color: $primary-shade-color;
+          }
+
+          @media only screen and (min-width: $breakpoints-md) {
+            margin-top: 90px;
+            display: inline-block;
+          }
+        }
+      }
+    }
+
+    &-hotels {
+      padding: 50px 37px;
+      min-height: calc(100vh - 60px);
+
+      > h1 {
+        @extend .text-3xl;
+        font-weight: bold;
+        margin-bottom: 32px;
+
+        @media screen and (min-width: $breakpoints-md) {
+          font-size: 24px;
+        }
+      }
+      &-items {
+        display: grid;
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        gap: 16px;
+        @media screen and (min-width: $breakpoints-md) {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        > app-hotel-card {
+          grid-column: span 1 / span 1;
+        }
+      }
+
+      @media only screen and (min-width: $breakpoints-md) {
+        padding: 90px;
+      }
+      @media only screen and (min-width: $breakpoints-lg) {
+        padding: 90px 100px;
+      }
+      @media only screen and (min-width: $breakpoints-xl) {
+        padding: 90px 138px;
+      }
+    }
+  }
+}

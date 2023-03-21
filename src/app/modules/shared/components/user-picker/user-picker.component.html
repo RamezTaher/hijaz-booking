@@ -1,0 +1,46 @@
+<div
+  class="picker"
+  [ngClass]="{ 'picker-dark': isTextDark, open: isUserPickerOpen }"
+  (clickAway)="clickOutside()"
+>
+  <div (click)="isUserPickerOpen = !isUserPickerOpen" class="picker-section">
+    <img src="assets/images/user.svg" />
+    <div class="username">{{ user.name }}</div>
+    <i class="icon-expand_more_black_24dp"></i>
+  </div>
+  <div *ngIf="isUserPickerOpen" class="picker-drop">
+    <div
+      (click)="isUserPickerOpen = false"
+      [routerLink]="['/pages/profile/personal']"
+      class="picker-drop-items"
+    >
+      <img src="assets/images/user.svg" class="picker-drop-profile-img" />
+      <div class="picker-drop-profile-data">
+        <div class="picker-drop-profile-data-name">{{ user.name }}</div>
+        <div class="picker-drop-profile-data-email">
+          {{ user.email }}
+        </div>
+      </div>
+    </div>
+    <div
+      (click)="isUserPickerOpen = false"
+      class="picker-drop-items"
+      [routerLink]="['/pages/bookings']"
+    >
+      <i class="icon-room_service_black_24dp"></i>
+      <div>{{ "COMMON.RESERVATIONS" | translate }}</div>
+    </div>
+    <div
+      (click)="isUserPickerOpen = false"
+      class="picker-drop-items"
+      [routerLink]="'/profile/support'"
+    >
+      <i class="icon-help_black_24dp"></i>
+      <div>{{ "COMMON.CUSTOMER_SERVICE" | translate }}</div>
+    </div>
+    <div (click)="logout()" class="picker-drop-items">
+      <i class="icon-logout_black_24dp"></i>
+      <div>{{ "COMMON.LOGOUT" | translate }}</div>
+    </div>
+  </div>
+</div>

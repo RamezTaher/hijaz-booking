@@ -1,0 +1,36 @@
+@import "variables";
+@import "functions";
+@import "mixins";
+:host {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+  .text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    @extend .text-xs;
+    color: $primary-color;
+    &-note {
+      font-weight: 700;
+      background-color: $primary-tint-color;
+      color: $primary-color;
+      padding: 2px 4px;
+      border-radius: 5px;
+    }
+    @media only screen and (min-width: $breakpoints-md) {
+      font-size: 14px;
+    }
+  }
+  .reviews {
+    @extend .text-xxs;
+    color: $dark-shade-color;
+  }
+  @media only screen and (min-width: $breakpoints-md) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+}

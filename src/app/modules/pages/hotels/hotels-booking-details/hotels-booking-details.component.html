@@ -1,0 +1,112 @@
+<div class="container">
+  <div class="page">
+    <app-card-loading
+      *ngIf="(httpsService.state$ | async)?.loading"
+    ></app-card-loading>
+    <ng-container *ngIf="!(httpsService.state$ | async)?.loading">
+      <div class="page-price">
+        <div class="page-price-info">
+          <div>
+            <h1>
+              <div>{{ "COMMON.PRICE" | translate }}</div>
+            </h1>
+            <h2>
+              {{ total_without_vat.toFixed(2) }}
+              {{ "COMMON.SAR_ABBRIVIATION" | translate }}
+            </h2>
+          </div>
+          <div>
+            <h1>
+              <div>{{ "COMMON.TAX" | translate }}</div>
+            </h1>
+            <h2>
+              <div>
+                {{ total_vat.toFixed(2) }}
+                {{ "COMMON.SAR_ABBRIVIATION" | translate }}
+              </div>
+            </h2>
+          </div>
+        </div>
+
+        <div class="page-price-sum">
+          <h1>{{ "COMMON.TOTAL_PRICE" | translate }}</h1>
+          <h2>
+            {{ total_price.toFixed(2) }}
+            {{ "COMMON.SAR_ABBRIVIATION" | translate }}
+          </h2>
+        </div>
+      </div>
+      <div class="page-pay">
+        <div class="page-paiement">
+          <div
+            class="page-paiement-visa"
+            [ngClass]="{ active: isVisaSelected }"
+            (click)="selectVisa()"
+          >
+            <div class="page-paiement-methods">
+              <label class="container-radio">
+                <input type="checkbox" [checked]="isVisaSelected" />
+                <span class="checkmark-radio"></span>
+              </label>
+              <div>{{ "BOOKINGS.CREDIT_CARD" | translate }}</div>
+            </div>
+          </div>
+
+          <div
+            class="page-paiement-bank"
+            [ngClass]="{ active: isBankSelected }"
+            (click)="selectBank()"
+          >
+            <div class="page-paiement-methods">
+              <label class="container-radio">
+                <input type="checkbox" [checked]="isBankSelected" />
+                <span class="checkmark-radio"></span>
+              </label>
+              <div>{{ "BOOKINGS.BANK_TRANSFER" | translate }}</div>
+            </div>
+            <div class="page-paiement-bank-type" *ngIf="isBankSelected">
+              <div>{{ "BOOKINGS.CHOOSE_BANK" | translate }}</div>
+              <form
+                [formGroup]="bank_form"
+                *ngIf="
+                  !(httpsService.state$ | async)?.empty &&
+                  (httpsService.state$ | async)?.data &&
+                  (httpsService.state$ | async)?.data.length > 0
+                "
+                class="page-paiement-bank-type-form"
+              >
+                <div
+                  *ngFor="let item of (httpsService.state$ | async)?.data"
+                  class="page-paiement-bank-type-form-item"
+                >
+                  <span>{{ item.AccountNameAr }} - {{ item.BankNameAr }}</span>
+
+                  <label for="bank{{ item.Id }}" class="container-radio">
+                    <input
+                      formControlName="bank"
+                      [value]="item.Id"
+                      name="bank"
+                      type="checkbox"
+                      id="bank{{ item.Id }}"
+                    />
+                    <span class="checkmark-radio"></span>
+                  </label>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="page-actions">
+          <button (click)="confirmPaiement()" class="btn btn-primary">
+            {{ "BUTTON.NEXT" | translate }}
+          </button>
+          <button (click)="goBack()" class="btn btn-primary-border">
+            {{ "BUTTON.REVIEW_BOOKING" | translate }}
+          </button>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
+
+<app-mask *ngIf="(bookingService.state$ | async)?.loading"></app-mask>

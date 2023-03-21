@@ -1,0 +1,74 @@
+@import "variables";
+@import "mixins";
+@import "functions";
+:host {
+  .picker {
+    position: relative;
+    font-weight: 600;
+    @extend .text-sm;
+    border-radius: 5px;
+    border: 1px solid $primary-shade-color;
+    &-section {
+      cursor: pointer;
+      display: flex;
+      justify-content: flex-start;
+      flex-direction: column;
+      padding: 8px 12px;
+      color: $dark-color;
+      border-radius: 5px;
+      width: 100%;
+      z-index: 10;
+      i {
+        transition: all 0.1s ease-in-out;
+      }
+      &-title {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 8px;
+        @extend .text-xs;
+        > i {
+          @extend .text-xs;
+        }
+      }
+    }
+    &-drop {
+      margin-top: 5px;
+      position: absolute;
+      z-index: 1;
+      width: 100%;
+      background-color: $secondary-tint-color;
+      border: 1px solid $primary-color;
+      @include shadow-md;
+      border-radius: 5px;
+      padding: 5px 0;
+      max-height: 100px;
+      overflow-y: auto;
+      &-item {
+        cursor: pointer;
+        position: relative;
+        text-align: start;
+        padding: 8px 12px;
+        @extend .text-xs;
+        white-space: nowrap;
+        &:hover {
+          background-color: $primary-color;
+          color: $secondary-tint-color;
+        }
+      }
+    }
+    &-open {
+      border: 1px solid $primary-color;
+      background-color: $secondary-tint-color;
+      .room-section-people {
+        border-left: 1px solid $primary-color;
+      }
+      i {
+        color: $primary-color;
+      }
+      i.drop-arrow {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}

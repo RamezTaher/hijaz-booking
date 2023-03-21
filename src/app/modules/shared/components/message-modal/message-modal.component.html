@@ -1,0 +1,22 @@
+<div class="background">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-header-title">
+        <i (click)="onClose.emit()" class="icon-clear_black_24dp text-2xl cursor-pointer"></i>
+      </div>
+
+    </div>
+    <div class="modal-body">
+      <img src="/assets/icons/{{type}}.svg"/>
+
+      <p class="text-content">{{text}}</p>
+      <div *ngIf="!isConfirm" >
+        <button (click)="okClick()" class="btn-ok btn btn-primary">{{'COMMON.Ok' | translate}}</button>
+      </div>
+      <div class="options" *ngIf="isConfirm">
+        <button (click)="onSuccess.emit()" class="btn-ok btn btn-primary">{{'COMMON.YES' | translate}}</button>
+        <button (click)="onClose.emit()" class="btn-ok btn btn-secondary">{{'COMMON.NO' | translate}}</button>
+      </div>
+    </div>
+  </div>
+</div>

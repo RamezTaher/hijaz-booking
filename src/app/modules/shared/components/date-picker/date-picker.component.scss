@@ -1,0 +1,59 @@
+@import "variables";
+@import "functions";
+@import "mixins";
+:host {
+  .picker {
+    position: relative;
+    @extend .text-sm;
+    border-radius: 5px;
+    border: 1px solid $primary-shade-color;
+    background-color: $secondary-tint-color;
+    &-section {
+      cursor: pointer;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 18px;
+      color: $dark-color;
+      border-radius: 5px;
+      width: 100%;
+      i {
+        transition: all 0.1s ease-in-out;
+      }
+      &-date {
+        padding: 8px 16px;
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+        width: 100%;
+        &-title {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          gap: 8px;
+          color: $primary-color;
+          @extend .text-xs;
+          font-weight: 700;
+          > i {
+            @extend .text-xs;
+          }
+        }
+      }
+    }
+    &-open {
+      border: 1px solid $primary-color;
+      background-color: $primary-tint-color;
+      .picker-section-date-start {
+        [dir="rtl"] & {
+          border-left: 1px solid $primary-color;
+        }
+        [dir="ltr"] & {
+          border-right: 1px solid $primary-color;
+        }
+      }
+      i {
+        color: $primary-color;
+      }
+    }
+  }
+}

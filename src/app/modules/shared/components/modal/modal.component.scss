@@ -1,0 +1,83 @@
+@import "variables";
+@import "mixins";
+@import "functions";
+:host {
+  .modal {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    z-index: 150;
+    background-color: rgba($color: $dark-color, $alpha: 0.3);
+    [dir="rtl"] & {
+      right: 0;
+    }
+    [dir="ltr"] & {
+      left: 0;
+    }
+    .web {
+      display: flex;
+      padding: 16px;
+      background-color: $secondary-tint-color;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 8px;
+      position: absolute;
+      border-radius: 5px;
+      width: 400px;
+      height: 250px;
+      top: calc(50% - 125px);
+      @include shadow-md;
+      [dir="rtl"] & {
+        right: calc(50% - 200px);
+      }
+      [dir="ltr"] & {
+        left: calc(50% - 200px);
+      }
+      &-header {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        width: 100%;
+        font-weight: 700;
+        i {
+          cursor: pointer;
+          @extend .text-2xl;
+        }
+      }
+      &-body {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 16px;
+        > i {
+          @extend .text-7xl;
+          &.success {
+            color: $success-color;
+          }
+          &.error {
+            color: $danger-color;
+          }
+        }
+        &-text {
+          font-weight: 700;
+        }
+      }
+      &-actions {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top: auto;
+        gap: 16px;
+        > button {
+          padding: 10px 15px;
+        }
+      }
+    }
+  }
+}

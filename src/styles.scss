@@ -1,0 +1,92 @@
+/* You can add global styles to this file, and also import other style files */
+@import "assets/styles/main.scss";
+@import "assets/icons/style.css";
+a {
+  text-decoration: none;
+}
+.error-msg {
+  margin-top: 4px;
+  @extend .text-xs;
+  color: $danger-color;
+}
+.done {
+  position: absolute;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(-1em);
+  color: #52b36c;
+  transition: all 0.5s;
+  font-size: 18px;
+  &.copied {
+    display: inline !important;
+    opacity: 1;
+    transform: translateY(-2em);
+  }
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.ngx-pagination {
+  padding-left: 0px !important;
+  margin-bottom: 0 !important;
+  display: flex !important;
+  gap: 4px !important;
+
+  > li {
+    background-color: transparent !important;
+    border-radius: 5px !important;
+
+    > a {
+      width: 100% !important;
+      height: 100% !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      color: $primary-tint-color !important;
+      padding: 10px 15px !important;
+      border: 1px solid transparent !important;
+      &:hover {
+        background-color: rgba($primary-tint-color, 0.3);
+        color: $primary-color;
+      }
+    }
+  }
+  .current {
+    border: 1px solid $primary-color !important;
+    color: $primary-color !important;
+    padding: 10px 15px !important;
+  }
+
+  .pagination-next,
+  .pagination-previous {
+    background-color: rgba($primary-tint-color, 0.3) !important;
+    &.disabled {
+      background-color: $secondary-shade-color !important;
+      cursor: default !important;
+      padding: 10px 15px !important;
+      color: $secondary-tint-color !important;
+      border: 1px solid $secondary-shade-color !important ;
+    }
+    &::before,
+    &::after {
+      margin: 0 !important;
+    }
+    > a {
+      &::before,
+      &::after {
+        margin: 0 !important;
+      }
+    }
+  }
+  .small-screen {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 10px 15px !important;
+
+    @media only screen and (min-width: $breakpoints-md) {
+      display: none !important;
+    }
+  }
+}

@@ -1,0 +1,215 @@
+<div class="page">
+  <div class="page-header">
+    <div class="container">
+      <div class="page-header-search">
+        <div class="web">
+          <app-destination-picker
+            [value]="queries?.city"
+            (locationChange)="addLocation($event)"
+          ></app-destination-picker>
+          <app-date-range-picker
+            (dateChange)="addDate($event)"
+            [checkin]="queries?.checkin"
+            [checkout]="queries?.checkout"
+          ></app-date-range-picker>
+
+          <div class="coupon">
+            <div class="title">
+              <i class="icon-promo-code"></i>
+              <div>
+                {{ "INPUT.SPECIAL_CODE" | translate }}
+              </div>
+            </div>
+            <div class="text">
+              <input
+                (ngModelChange)="onCouponChange($event)"
+                type="text"
+                [placeholder]="'INPUT.SPECIAL_CODE' | translate"
+                [(ngModel)]="currentPromocode"
+              />
+            </div>
+          </div>
+          <button (click)="search()" class="btn btn-primary">
+            <i class="icon-search_black_24dp"></i>
+            <div>{{ "BUTTON.UPDATE_SEARCH" | translate }}</div>
+          </button>
+        </div>
+        <ng-container>
+          <div (click)="isMobileSearchOpen = true" class="mobile">
+            <div *ngIf="!isMobileSearchOpen" class="mobile-text">
+              <i class="icon-search_black_24dp"></i>
+              <div class="mobile-text-data">
+                <div class="mb-1">
+                  {{ queries?.text }}
+                </div>
+                <div class="dark-shade-color font-normal">
+                  {{ queries?.checkin | date: "longDate" }} -
+                  {{ queries?.checkout | date: "longDate" }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="isMobileSearchOpen" class="mobile-search">
+            <div
+              (click)="isMobileSearchOpen = false"
+              class="mobile-search-bg"
+            ></div>
+            <div class="mobile-search-actions">
+              <app-destination-picker
+                [value]="queries?.city"
+                (locationChange)="addLocation($event)"
+              ></app-destination-picker>
+              <app-date-range-picker
+                (dateChange)="addDate($event)"
+                [checkin]="queries?.checkin"
+                [checkout]="queries?.checkout"
+              ></app-date-range-picker>
+              <div class="coupon">
+                <div class="title">
+                  <i class="icon-promo-code"></i>
+                  <div>
+                    {{ "INPUT.SPECIAL_CODE" | translate }}
+                  </div>
+                </div>
+                <div class="text">
+                  <input
+                    (ngModelChange)="onCouponChange($event)"
+                    type="text"
+                    [placeholder]="'INPUT.SPECIAL_CODE' | translate"
+                    [(ngModel)]="currentPromocode"
+                  />
+                </div>
+              </div>
+
+              <button
+                (click)="search(); isMobileSearchOpen = false"
+                class="btn btn-primary"
+              >
+                <i class="icon-search_black_24dp"></i>
+                <div>{{ "BUTTON.UPDATE_SEARCH" | translate }}</div>
+              </button>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+  <div
+    (clickAway)="isMobileHotelsFiltersOpen = false; isMobileSortByOpen = false"
+    class="page-mobile-filters"
+  >
+    <ng-container>
+      <div (click)="isMobileHotelsFiltersOpen = true" class="btn btn-secondary">
+        <i class="icon-filter_alt_black_24dp"></i>
+        <div>
+          {{ "BUTTON.FILTERS" | translate }}
+        </div>
+      </div>
+      <div *ngIf="isMobileHotelsFiltersOpen" class="filters">
+        <div class="filters-header">
+          <i
+            (click)="isMobileHotelsFiltersOpen = false"
+            class="icon-close_black_24dp"
+          ></i>
+          <div class="w-full text-center">
+            {{ "BUTTON.FILTERS" | translate }}
+          </div>
+        </div>
+        <app-hotels-filter></app-hotels-filter>
+        <div class="filters-action">
+          <button
+            (click)="isMobileHotelsFiltersOpen = false"
+            class="btn btn-primary"
+            type="button"
+          >
+            {{ "BUTTON.APPLY" | translate }}
+          </button>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-container>
+      <div (click)="isMobileSortByOpen = true" class="btn btn-secondary">
+        <div>{{ "BUTTON.SORT_BY" | translate }}</div>
+        <i class="icon-arrow_drop_down_black_24dp"></i>
+      </div>
+      <div *ngIf="isMobileSortByOpen" class="sort-by">
+        <div (click)="isMobileSortByOpen = false" class="sort-by-bg"></div>
+        <div class="sort-by-actions">
+          <div class="sort-by-actions-header">
+            <i
+              (click)="isMobileSortByOpen = false"
+              class="icon-close_black_24dp"
+            ></i>
+            <div class="w-full text-center">
+              {{ "BUTTON.SORT_BY" | translate }}
+            </div>
+          </div>
+          <div class="sort-by-actions-body">
+            <div>
+              <div>الأقل سعرا</div>
+              <i class="icon-done_black_24dp"></i>
+            </div>
+            <div>
+              <div>الأكثر شهرة</div>
+              <i class="icon-done_black_24dp"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  <div class="container">
+    <div class="page-search">
+      <div class="page-search-filter">
+        <app-hotels-filter
+          (onRateChange)="filterByStars($event)"
+          (onSearchQueryChange)="filterByHotelName($event)"
+        ></app-hotels-filter>
+      </div>
+      <div class="page-search-data">
+        <div class="page-search-data-header">
+          <div class="page-search-data-header-number">
+            <span *ngIf="!(hotelService.state$ | async)?.loading">{{
+              "HOTELS.AVAILABLE_HOTELS"
+                | translate
+                  : {
+                      value: (this.hotelService.state$ | async)?.data?.Data
+                        ?.length
+                    }
+            }}</span>
+            <span *ngIf="(hotelService.state$ | async)?.loading"
+              >جاري البحث ...</span
+            >
+          </div>
+          <div class="page-search-data-header-filter">
+            <div>{{ "HOTELS.SORT_BY" | translate }}:</div>
+            <app-sort-by-drop></app-sort-by-drop>
+          </div>
+        </div>
+        <app-card-loading
+          *ngIf="(hotelService.state$ | async)?.loading"
+        ></app-card-loading>
+        <div
+          *ngIf="!(hotelService.state$ | async)?.loading"
+          class="page-search-data-list"
+        >
+          <app-hotels-search-card
+            [trackToken]="
+              (hotelService.state$ | async)?.data?.context?.trackToken
+            "
+            [searchObject]="searchObject"
+            [hotel]="item"
+            *ngFor="let item of (this.hotelService.state$ | async)?.data.Data"
+          ></app-hotels-search-card>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-modal
+    (handleCloseEvent)="closeErrorModal()"
+    *ngIf="modalError.isShown"
+    [text]="modalError.text"
+    [type]="modalError.type"
+  ></app-modal>
+</div>

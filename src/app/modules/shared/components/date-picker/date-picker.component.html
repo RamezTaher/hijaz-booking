@@ -1,0 +1,18 @@
+<div [ngClass]="{ 'picker-open': dp.isOpen }" class="picker">
+  <div
+    #dp="bsDatepicker"
+    bsDatepicker
+    [bsConfig]="bsConfig"
+    class="picker-section"
+    [bsValue]="resDate"
+    (bsValueChange)="onValueChange($event)"
+  >
+    <div class="picker-section-date">
+      <div class="picker-section-date-title">
+        <i class="icon-calendar_today_black_24dp"></i>
+        <div>{{ "INPUT.RES_DATE" | translate }}</div>
+      </div>
+      <div>{{ resDate | date: "longDate" }}</div>
+    </div>
+  </div>
+</div>

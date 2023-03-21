@@ -1,0 +1,67 @@
+@import "variables";
+@import "mixins";
+@import "functions";
+:host {
+  .picker {
+    position: relative;
+    font-weight: 600;
+    background-color: $secondary-tint-color;
+    border-radius: 5px;
+    border: 1px solid $dark-tint-color;
+    &-section {
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 5px;
+      width: 100%;
+      @extend .text-xs;
+      padding: 6px 12px;
+      width: 100%;
+      z-index: 10;
+      i {
+        color: $dark-color;
+        @extend .text-xl;
+        transition: all 0.1s ease-in-out;
+      }
+    }
+    &-drop {
+      overflow: hidden;
+      max-height: 300px;
+      position: absolute;
+      display: none;
+      background-color: $secondary-tint-color;
+      @include shadow-md;
+      width: 100%;
+      border-radius: 5px;
+      padding: 5px 0px;
+      margin-top: 5px;
+      z-index: 20;
+      &-item {
+        cursor: pointer;
+        color: $dark-color;
+        padding: 8px 14px;
+        @extend .text-xs;
+        text-transform: uppercase;
+        &:hover {
+          background-color: $primary-color;
+          color: $secondary-tint-color;
+        }
+        &:not(:last-child) {
+          margin-bottom: 6px;
+        }
+      }
+      @media only screen and (min-width: $breakpoints-md) {
+        display: block;
+      }
+    }
+    &-open {
+      border: 1px solid $primary-color;
+      background-color: $primary-tint-color;
+      .picker-section i {
+        color: $primary-color;
+        transform: rotate(180deg);
+      }
+    }
+  }
+}

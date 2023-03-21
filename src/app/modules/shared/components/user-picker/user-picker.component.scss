@@ -1,0 +1,108 @@
+@import "variables";
+@import "functions";
+@import "mixins";
+:host {
+  .picker {
+    position: relative;
+    display: none;
+    &-section {
+      justify-content: space-between;
+      align-items: center;
+      color: $secondary-tint-color;
+      display: flex;
+      gap: 8px;
+      cursor: pointer;
+      > img {
+        width: 30px;
+        height: 30px;
+        border-radius: 9999px;
+      }
+      > div {
+        @extend .text-xs;
+      }
+      > i {
+        color: $secondary-tint-color;
+        @extend .text-sm;
+        transition: all 0.1s ease-in-out;
+      }
+    }
+    &-drop {
+      position: absolute;
+      [dir="rtl"] & {
+        left: 0;
+      }
+      [dir="ltr"] & {
+        right: 0;
+      }
+      margin-top: 5px;
+      background-color: $secondary-tint-color;
+      @include shadow;
+      min-width: 200px;
+      width: fit-content;
+      border-radius: 5px;
+      &-profile {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 8px;
+        &-data {
+          color: $dark-color;
+          &-name {
+            @extend .text-xs;
+          }
+          &-email {
+            @extend .text-xxs;
+            color: $dark-shade-color;
+          }
+        }
+        &-img {
+          width: 30px;
+          height: 30px;
+          border-radius: 9999px;
+        }
+      }
+
+      &-items {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 10px;
+        @extend .text-xs;
+        cursor: pointer;
+        > i {
+          color: $primary-color;
+        }
+        &:hover {
+          background-color: $primary-tint-color;
+        }
+        &:first-child {
+          border-top-left-radius: 5px;
+          border-top-right-radius: 5px;
+        }
+        &:last-child {
+          border-bottom-left-radius: 5px;
+          border-bottom-right-radius: 5px;
+        }
+      }
+    }
+    @media only screen and (min-width: $breakpoints-md) {
+      display: block;
+    }
+    &-dark {
+      .picker-section {
+        color: $dark-color;
+        > i {
+          color: $primary-color;
+        }
+      }
+    }
+    &.open {
+      .picker-section {
+        > i {
+          transform: rotate(180deg);
+        }
+      }
+    }
+  }
+}

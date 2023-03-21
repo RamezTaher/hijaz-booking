@@ -1,0 +1,83 @@
+@import "variables";
+@import "functions";
+@import "mixins";
+:host {
+  .picker {
+    position: relative;
+    @extend .text-sm;
+    border-radius: 5px;
+    border: 1px solid $primary-shade-color;
+    background-color: $secondary-tint-color;
+    &-section {
+      cursor: pointer;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      color: $dark-color;
+      border-radius: 5px;
+      width: 100%;
+      i {
+        transition: all 0.1s ease-in-out;
+      }
+      &-date-start {
+        padding: 8px 16px;
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+        width: 50%;
+        [dir="rtl"] & {
+          border-left: 1px solid $primary-shade-color;
+        }
+        [dir="ltr"] & {
+          border-right: 1px solid $primary-shade-color;
+        }
+        &-title {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          gap: 8px;
+          color: $primary-color;
+          @extend .text-xs;
+          font-weight: 700;
+          > i {
+            @extend .text-xs;
+          }
+        }
+      }
+      &-date-end {
+        padding: 8px 16px;
+        display: flex;
+        justify-content: flex-start;
+        width: 50%;
+        flex-direction: column;
+        &-title {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          gap: 8px;
+          color: $primary-color;
+          @extend .text-xs;
+          font-weight: 700;
+          > i {
+            @extend .text-xs;
+          }
+        }
+      }
+    }
+    &-open {
+      border: 1px solid $primary-color;
+      background-color: $primary-tint-color;
+      .picker-section-date-start {
+        [dir="rtl"] & {
+          border-left: 1px solid $primary-color;
+        }
+        [dir="ltr"] & {
+          border-right: 1px solid $primary-color;
+        }
+      }
+      i {
+        color: $primary-color;
+      }
+    }
+  }
+}

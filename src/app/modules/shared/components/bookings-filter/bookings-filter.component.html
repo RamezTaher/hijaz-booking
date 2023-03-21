@@ -1,0 +1,71 @@
+<form [formGroup]="searchForm" class="filters">
+  <div class="input-form">
+    <div class="title">{{ "INPUT.BRN" | translate }}</div>
+    <input
+      formControlName="brn"
+      [placeholder]="'INPUT.BRN' | translate"
+      type="text"
+    />
+  </div>
+  <div class="input-form">
+    <div class="title">{{ "INPUT.RES_AT" | translate }}</div>
+    <input
+      class="date"
+      formControlName="date"
+      [placeholder]="'INPUT.RES_AT' | translate"
+      type="text"
+      bsDatepicker
+      #dp="bsDatepicker"
+      bsDatepicker
+      [bsConfig]="bsConfig"
+    />
+    <i class="icon-calendar_today_black_24dp action"></i>
+  </div>
+  <div class="input-form">
+    <div class="title">{{ "INPUT.TRAVEL_DATE" | translate }}</div>
+    <input
+      class="date"
+
+      [placeholder]="'INPUT.TRAVEL_DATE' | translate"
+      type="text"
+      bsDatepicker
+      #dp="bsDatepicker"
+      bsDatepicker
+      [bsConfig]="bsConfig"
+    />
+    <i class="icon-calendar_today_black_24dp action"></i>
+  </div>
+  <div class="input-form">
+    <div class="title">{{ "INPUT.RES_STATUS" | translate }}</div>
+    <app-custom-select
+
+      [config]="{ placeholder: 'INPUT.RES_STATUS' | translate }"
+    ></app-custom-select>
+  </div>
+  <div class="input-form">
+    <div class="title">{{ "INPUT.SELECT_PRODUCT" | translate }}</div>
+    <app-custom-select
+
+      [config]="{ placeholder: 'INPUT.SELECT_PRODUCT' | translate }"
+    ></app-custom-select>
+  </div>
+  <div class="input-form">
+    <div class="title">{{ "INPUT.CLIENT_NUMBER" | translate }}</div>
+    <input
+
+      [placeholder]="'INPUT.CLIENT_NUMBER' | translate"
+      type="text"
+    />
+  </div>
+  <div class="input-form">
+    <div class="title">{{ "INPUT.CLIENT_NAME" | translate }}</div>
+    <input
+      formControlName="guest"
+      [placeholder]="'INPUT.CLIENT_NAME' | translate"
+      type="text"
+    />
+  </div>
+  <button (click)="search()" class="btn btn-primary" type="submit">
+    {{ "BUTTON.SEARCH" | translate }}
+  </button>
+</form>

@@ -1,0 +1,58 @@
+<div class="filter">
+  <div class="filter-search">
+    <div class="filter-search-title">
+      {{ "HOTELS.SEARCH_BY_HOTEL_NAME" | translate }}
+    </div>
+    <div class="input-form">
+      <input
+        class="pr-8"
+        type="text"
+        name="search_hotel_name"
+        placeholder="{{ 'INPUT.SEARCH' | translate }}..."
+      />
+      <i class="icon-search_black_24dp search"></i>
+    </div>
+  </div>
+  <div class="filter-filters">
+    <div class="filter-filters-title">
+      {{ "HOTELS.FILTER" | translate }}
+    </div>
+    <div class="filter-filters-stars">
+      <div class="filter-filters-star-title">
+        {{ "HOTELS.STAR_RATE" | translate }}
+      </div>
+      <div class="filter-filters-star-stars">
+        <div
+          [ngClass]="{
+            open: star === starRateSelected
+          }"
+          *ngFor="let star of [1, 2, 3, 4, 5]"
+          class="filter-filters-star-stars-item"
+          (click)="selectStarRate(star)"
+        >
+          <i class="icon-star_black_24dp"></i>
+          <div>{{ star }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="filter-filters-other">
+      <div class="filter-filters-other-title">
+        {{ "HOTELS.CAR_TYPE" | translate }}
+      </div>
+      <div class="filter-filters-other-item">
+        <label class="container-checkbox">
+          <input type="checkbox" />
+          <span class="checkmark-checkbox"></span>
+        </label>
+        <span>1,245 - 1,300 {{ "CURRENCY.SAR" | translate }} (1)</span>
+      </div>
+      <div class="filter-filters-other-item">
+        <label class="container-checkbox">
+          <input type="checkbox" />
+          <span class="checkmark-checkbox"></span>
+        </label>
+        <span>1,245 - 1,300 {{ "CURRENCY.SAR" | translate }} (1)</span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+<div *ngIf="cancellationPolicy?.rules" >
+  <div  class="pt-2 text-sm font-semibold danger-color" *ngFor="let item of cancellationPolicy?.rules" >
+    <div>
+      <span>
+        {{'INPUT.FROM' | translate}}  {{ item.fromDateTime | date: "longDate" }}
+        {{'INPUT.TO' | translate}}
+        {{ item.toDateTime | date: "longDate" }} {{'BOOKINGS.DEDUCATED_AMOUNT'|translate}} :
+        {{ calculateChargeAmount(item.charge.chargeType, item.charge.chargeAmount, item.charge.chargeValue) }}  {{ "COMMON.SAR" | translate }}</span>
+      </div>
+    </div>
+  </div>

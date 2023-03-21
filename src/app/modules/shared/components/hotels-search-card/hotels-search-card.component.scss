@@ -1,0 +1,158 @@
+@import "variables";
+@import "functions";
+@import "mixins";
+:host {
+  width: 100%;
+  .card {
+    display: flex;
+    justify-content: flex-start;
+    @include shadow-md;
+    border-radius: 5px;
+    background: white;
+    &-image {
+      width: 25%;
+
+      > img {
+        height: 100%;
+        margin-bottom: -2px;
+        width: 100%;
+        object-fit: cover;
+        [dir="rtl"] & {
+          border-top-right-radius: 5px;
+          border-bottom-right-radius: 5px;
+        }
+        [dir="ltr"] & {
+          border-top-left-radius: 5px;
+          border-bottom-left-radius: 5px;
+        }
+      }
+      @media only screen and (min-width: $breakpoints-md) {
+        max-height: 100%;
+      }
+    }
+    &-info {
+      display: flex;
+      justify-content: flex-start;
+      width: 75%;
+      flex-direction: column;
+      padding: 15px;
+      &-data {
+        @extend .text-sm;
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+        &-title {
+          font-weight: 700;
+        }
+        &-info {
+          display: flex;
+          align-items: flex-start;
+          justify-content: flex-start;
+          gap: 10px;
+          flex-direction: column;
+          &-pos {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 4px;
+            color: $dark-shade-color;
+            @extend .text-xxs;
+            > i {
+              color: $dark-shade-color;
+              @extend .text-xxs;
+            }
+          }
+          @media only screen and (min-width: $breakpoints-md) {
+            flex-direction: row;
+            gap: 12px;
+            &-pos {
+              font-size: 12px;
+              > i {
+                font-size: 12px;
+              }
+            }
+          }
+        }
+        &-services {
+          display: flex;
+          gap: 14px;
+          align-items: center;
+          justify-content: flex-start;
+          &-facilities {
+            padding: 4px 16px;
+            display: none;
+            gap: 10px;
+            align-items: center;
+            justify-content: flex-start;
+            > i {
+              @extend .text-2xl;
+              color: $primary-shade-color;
+            }
+            @media only screen and (min-width: $breakpoints-md) {
+              display: flex;
+            }
+          }
+        }
+
+        @media only screen and (min-width: $breakpoints-md) {
+          gap: 12px;
+          width: 70%;
+          [dir="rtl"] & {
+            border-left: 1px solid $primary-shade-color;
+          }
+          [dir="ltr"] & {
+            border-right: 1px solid $primary-shade-color;
+          }
+        }
+      }
+      &-price {
+        margin-top: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        align-items: flex-end;
+        justify-content: flex-end;
+        color: $primary-shade-color;
+        [dir="rtl"] & {
+          padding-right: 15px;
+        }
+        [dir="ltr"] & {
+          padding-left: 15px;
+        }
+        &-amount {
+          @extend .text-2xl;
+          font-weight: 700;
+          > span {
+            @extend .text-xxs;
+            font-weight: 400;
+          }
+        }
+        &-tax {
+          color: $dark-shade-color;
+          @extend .text-xxs;
+          text-align: end;
+          white-space: nowrap;
+        }
+        > button {
+          padding: 10px 15px;
+          display: none;
+          @extend .text-xs;
+          @media only screen and (min-width: $breakpoints-md) {
+            display: flex;
+            margin-top: 15px;
+          }
+        }
+        @media only screen and (min-width: $breakpoints-md) {
+          width: 25%;
+          margin-top: none;
+          align-items: flex-end;
+          justify-content: center;
+        }
+      }
+      @media only screen and (min-width: $breakpoints-md) {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+  }
+}

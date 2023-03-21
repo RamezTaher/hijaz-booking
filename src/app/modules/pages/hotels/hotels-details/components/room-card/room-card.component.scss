@@ -1,0 +1,190 @@
+@import "variables";
+@import "functions";
+@import "mixins";
+.room {
+  &__details {
+    &--item {
+      background-color: $secondary-tint-color;
+      position: relative;
+      overflow: hidden;
+      @include shadow-2;
+      @include respond(lg) {
+        display: flex;
+        padding: 0;
+        width: 100%;
+        box-shadow: none;
+        border-radius: 0;
+        margin: 0;
+      }
+    }
+  }
+  &__info {
+    border-bottom: 2px solid $primary-tint-color;
+
+    @include respond(lg) {
+      padding: 0;
+      flex: 2;
+      border-left: 1px solid $primary-shade-color;
+      border-right: 1px solid $primary-shade-color;
+      border-bottom: 1px solid $primary-shade-color;
+    }
+    > div {
+      @include respond(lg) {
+        padding: 16px;
+      }
+      > h1 {
+        @extend .text-base;
+        font-weight: bold;
+        padding: 0 16px;
+        margin-bottom: 20px;
+      }
+    }
+
+    &--img {
+      margin-bottom: 10px;
+      height: 160px;
+    }
+  }
+  &__options-price {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    @include respond(lg) {
+      flex: 5;
+      gap: 0;
+    }
+    &--item {
+      padding: 16px;
+
+      &:not(:last-child) {
+        border-bottom: 1px solid $primary-shade-color;
+        @include respond(lg) {
+          border-bottom: 0;
+        }
+      }
+      > * {
+        @include respond(lg) {
+          border-bottom: 1px solid $primary-shade-color;
+        }
+      }
+
+      @include respond(lg) {
+        display: flex;
+        padding: 0;
+        border-bottom: 0;
+      }
+
+      &.only_one_room {
+        height: 100%;
+      }
+    }
+  }
+
+  &__options {
+    @include respond(lg) {
+      flex: 3;
+      border-left: 1px solid $primary-shade-color;
+    }
+
+    > div {
+      @include respond(lg) {
+        padding: 16px;
+      }
+
+      > h2 {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        @extend .text-sm;
+        > i {
+          color: $primary-color;
+          @extend .text-lg;
+        }
+      }
+
+      > h3 {
+        margin-top: 8px;
+        @extend .text-sm;
+        color: $dark-shade-color;
+      }
+    }
+  }
+
+  &__price {
+    @include respond(lg) {
+      flex: 2;
+      border-bottom: 1px solid $primary-shade-color;
+      border-left: 1px solid $primary-shade-color;
+    }
+
+    > div {
+      display: flex;
+      flex-direction: column;
+      align-content: center;
+      margin-top: 16px;
+      gap: 10px;
+      @include respond(lg) {
+        padding: 16px;
+        margin-top: 0;
+        gap: 20px;
+      }
+    }
+    &--data {
+      @include respond(lg) {
+        display: flex;
+        flex-direction: column;
+        text-align: start;
+      }
+      > h1 {
+        @extend .text-2xl;
+        color: $primary-color;
+        font-weight: bold;
+      }
+      > h2 {
+        @extend .text-xxs;
+        font-weight: bold;
+      }
+      > h3 {
+        display: none;
+        @extend .text-sm;
+        @include respond(lg) {
+          display: block;
+          color: $dark-shade-color;
+        }
+      }
+    }
+
+    &--cta {
+      > div {
+        display: flex;
+        margin-top: 5px;
+        column-gap: 5px;
+        height: 45px;
+        > div {
+          width: 100%;
+        }
+
+        > button {
+          @extend .text-4xl;
+          font-weight: 300;
+          max-width: 42px !important;
+        }
+      }
+
+      > button {
+        padding: 15px 0;
+      }
+
+      &-box {
+        width: 100%;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $dark-color;
+        background-color: $secondary-color;
+        @extend .text-lg;
+      }
+    }
+  }
+}

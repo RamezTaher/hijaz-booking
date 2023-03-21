@@ -1,0 +1,76 @@
+<div
+  class="room__details--item"
+  [ngClass]="{ only_one_room: room.Data.length === 1 }"
+>
+  <div class="room__info">
+    <div>
+      <div class="room__info--img">
+        <img
+          [src]="picture ?? 'assets/images/hotel.jpg'"
+          style="width: 100%; height: 100%"
+          alt=""
+        />
+      </div>
+      <h1>{{ room.RoomTypeNameAr ?? room.RoomTypeName }}</h1>
+    </div>
+  </div>
+  <div class="room__options-price">
+    <div
+      [ngClass]="{ only_one_room: room.Data.length === 1 }"
+      class="room__options-price--item"
+      *ngFor="let choice of room.Data"
+    >
+      <div class="room__options">
+        <div>
+          <h2>
+            <i class="icon-king_bed_black_24dp"></i>
+            <div>{{ choice.MealAr ?? choice.Meal }}</div>
+          </h2>
+          <h2>
+            <i class="icon-window_black_24dp"></i>
+            <div>{{ choice.ViewNameAr ?? choice.ViewName }}</div>
+          </h2>
+          <h3 class="room__options--date">
+            {{ "COMMON.FROM" | translate }} {{ choice.CheckIn | date }}
+            {{ "COMMON.TO" | translate }} {{ choice.CheckOut | date }}
+          </h3>
+        </div>
+      </div>
+      <!-- ROOM PRICE -->
+
+      <div class="room__price">
+        <div>
+          <div class="room__price--data">
+            <h1>
+              {{ choice.PriceToPay }}
+              <span>{{ "COMMON.SAR" | translate }}</span>
+            </h1>
+            <h2>
+              {{ "COMMON.PERIOD" | translate }} {{ choice.NbrNights }}
+              {{ "COMMON.NIGHTS" | translate }}
+            </h2>
+            <h3>{{ "COMMON.PRICE_WITH_TAX" | translate }}</h3>
+          </div>
+          <div class="room__price--cta">
+            <div *ngIf="choice.selected && choice.Quantity > 0">
+              <button (click)="dec(choice)" class="btn btn-primary-shade">
+                -
+              </button>
+              <div class="room__price--cta-box">{{ choice.Quantity }}</div>
+              <button (click)="inc(choice)" class="btn btn-primary-shade">
+                +
+              </button>
+            </div>
+            <button
+              *ngIf="!choice.selected || choice.Quantity == 0"
+              (click)="selectChoice(choice)"
+              class="btn btn-primary-shade"
+            >
+              {{ "BUTTON.CHOOSE" | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

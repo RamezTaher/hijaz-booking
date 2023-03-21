@@ -1,0 +1,72 @@
+<div
+  (clickAway)="clickOutside()"
+  [ngClass]="{ 'picker-dark': true }"
+  class="picker"
+>
+  <div (click)="isLangPickerOpen = true" class="picker-section mobile">
+    <div class="flex justify-start items-center gap-2">
+      <i class="icon-translate_black_24dp"></i>
+      <div class="font-bold">
+        {{
+          translationService.getLanguage() === "ar"
+            ? ("LANGUAGE.ARABIC" | translate)
+            : ("LANGUAGE.ENGLISH" | translate)
+        }}
+      </div>
+    </div>
+    <i class="icon-chevron_left_black_24dp"></i>
+  </div>
+  <div
+    (click)="isLangPickerOpen = !isLangPickerOpen"
+    class="picker-section web"
+    [ngClass]="{ open: isLangPickerOpen }"
+  >
+    <div class="flex justify-start items-center gap-2">
+      <i class="icon-translate_black_24dp"></i>
+      <div class="font-bold">
+        {{
+          translationService.getLanguage() === "ar"
+            ? ("LANGUAGE.ARABIC" | translate)
+            : ("LANGUAGE.ENGLISH" | translate)
+        }}
+      </div>
+    </div>
+    <i class="icon-expand_more_black_24dp"></i>
+  </div>
+  <div *ngIf="isLangPickerOpen" class="picker-drop">
+    <div class="picker-drop-item" (click)="change('ar')">
+      {{ "LANGUAGE.ARABIC" | translate }}
+    </div>
+    <div class="picker-drop-item" (click)="change('en')">
+      {{ "LANGUAGE.ENGLISH" | translate }}
+    </div>
+  </div>
+  <div *ngIf="isLangPickerOpen" class="picker-drop-mobile">
+    <div class="picker-drop-mobile-data">
+      <div class="picker-drop-mobile-data-header">
+        <i (click)="isLangPickerOpen = false" class="icon-close_black_24dp"></i>
+        <div class="w-full text-center">
+          {{ "LANGUAGE.LANGUAGE" | translate }}
+        </div>
+      </div>
+      <div class="px-5 w-full">
+        <div class="picker-drop-mobile-data-item" (click)="change('ar')">
+          <div>{{ "LANGUAGE.ARABIC" | translate }}</div>
+          <i
+            [ngClass]="{ check: translationService.getLanguage() === 'ar' }"
+            *ngIf="translationService.getLanguage() === 'ar'"
+            class="icon-done_black_24dp"
+          ></i>
+        </div>
+        <div class="picker-drop-mobile-data-item" (click)="change('en')">
+          <div>{{ "LANGUAGE.ENGLISH" | translate }}</div>
+          <i
+            [ngClass]="{ check: translationService.getLanguage() === 'en' }"
+            *ngIf="translationService.getLanguage() === 'en'"
+            class="icon-done_black_24dp"
+          ></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,207 @@
+<div class="container">
+  <div class="page">
+    <div [routerLink]="['../..']" class="page-back">
+      <i class="icon-chevron_left_black_24dp"></i>
+      <div>{{ "HOTELS.BACK_TO_SEARCH" | translate }}</div>
+    </div>
+    <div class="page-book">
+      <button (click)="reservation()" class="btn btn-primary-shade">
+        {{ "BUTTON.BOOK_NOW" | translate }}
+      </button>
+      <div class="page-book-price">
+        <div class="page-book-price-amount">
+          {{ total }} <span>{{ "COMMON.SAR" | translate }}</span>
+        </div>
+        <div class="page-book-price-tax">
+          {{ "HOTELS.PRICE_WITH_TAX" | translate }}
+        </div>
+      </div>
+    </div>
+    <div class="page-overall">
+      <div class="page-overall-images">
+        <div class="page-overall-images-big">
+          <img [src]="hotel?.DefaultPicture ?? 'assets/images/no-image.jpg'" />
+        </div>
+        <div
+          *ngFor="let item of hotel?.Pictures.slice(0, 4)"
+          class="page-overall-images-other"
+        >
+          <img [src]="item?.url" />
+        </div>
+      </div>
+
+      <div class="page-overall-info">
+        <div class="page-overall-info-data">
+          <div class="page-overall-info-data-title">
+            {{ hotel?.NameAr ?? hotel?.Name }}
+          </div>
+
+          <div class="page-overall-info-data-info">
+            <app-hotel-stars [stars]="hotel?.Stars"></app-hotel-stars>
+            <div class="page-overall-info-data-info-pos">
+              <i class="icon-place_black_24dp"></i>
+              <div>{{ hotel?.AdressAr ?? hotel?.Adress }}</div>
+            </div>
+          </div>
+        </div>
+        <div class="page-overall-info-room">
+          <!-- <app-hotel-reviews></app-hotel-reviews> -->
+          <button class="btn btn-primary-shade" type="button">
+            {{ "HOTELS.CHOOSE_ROOM" | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="page-search">
+      <app-date-range-picker
+        (dateChange)="addDate($event)"
+        [checkin]="queries?.checkin"
+        [checkout]="queries?.checkout"
+      ></app-date-range-picker>
+      <div class="coupon">
+        <div class="title">
+          <i class="icon-promo-code"></i>
+          <div>
+            {{ "INPUT.SPECIAL_CODE" | translate }}
+          </div>
+        </div>
+        <div class="text">
+          <input
+            (ngModelChange)="onCouponChange($event)"
+            type="text"
+            [placeholder]="'INPUT.SPECIAL_CODE' | translate"
+            [(ngModel)]="currentPromocode"
+          />
+        </div>
+      </div>
+      <button (click)="upDateDateCodeInfo()" class="btn btn-primary-shade">
+        <i class="icon-search_black_24dp"></i>
+        <div>{{ "BUTTON.UPDATE_SEARCH" | translate }}</div>
+      </button>
+    </div>
+
+    <ng-container *ngIf="!(roomsService.state$ | async)?.loading">
+      <div class="page-rooms">
+        <div class="page-rooms-container">
+          <div class="page-rooms-container-table" *ngIf="rooms?.length > 0">
+            <div class="page-rooms-container-table-row">
+              <div>
+                <div>
+                  {{ "HOTELS.ROOM_INFO" | translate }}
+                </div>
+              </div>
+              <div>
+                <div>
+                  {{ "HOTELS.ROOM_CHOICES" | translate }}
+                </div>
+              </div>
+              <div>
+                <div>
+                  {{ "HOTELS.ROOM_PRICE" | translate }}
+                </div>
+              </div>
+              <div>
+                <div>
+                  {{ "HOTELS.ROOM_SUM_PRICE" | translate }}
+                </div>
+              </div>
+            </div>
+            <div class="page-rooms-container-table-items">
+              <div
+                class="page-rooms-container-table-items-item"
+                [ngClass]="{ 'only-one-room': rooms?.length == 0 }"
+              >
+                <app-room-card
+                  (onSelectRoom)="selectRooms()"
+                  [room]="item"
+                  [picture]="getRoomPicture(item.RoomTypeId)"
+                  *ngFor="let item of rooms"
+                ></app-room-card>
+              </div>
+
+              <div class="page-rooms-container-table-items-book">
+                <div>
+                  <div>
+                    <h1>
+                      {{ total }} <span>{{ "CURRENCY.SAR" | translate }}</span>
+                    </h1>
+                    <h3>
+                      <div>{{ "COMMON.PRICE_WITH_TAX" | translate }}</div>
+                    </h3>
+                  </div>
+
+                  <div>
+                    <button
+                      (click)="reservation()"
+                      class="btn btn-primary-shade"
+                    >
+                      {{ "BUTTON.BOOK" | translate }}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="page-rooms-container-table"
+            *ngIf="rooms?.length == 0"
+            [ngClass]="{ 'no-rooms': rooms?.length === 0 }"
+          >
+            {{ "COMMON.NO_ROOMS" | translate }}
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <div class="page-description">
+      <div class="page-description-title">
+        {{ "HOTELS.HOTEL_DESCRIPTION" | translate }}
+      </div>
+      <div class="page-description-content">
+        <p
+          *ngIf="hotel?.DescriptionAr"
+          [innerHTML]="hotel?.DescriptionAr ?? hotel?.Description"
+        ></p>
+        <p *ngIf="!hotel?.DescriptionAr">
+          {{ "COMMON.NO_DESCRIPTION" | translate }}
+        </p>
+
+        <div>
+          <google-map
+            *ngIf="this.hotel_gps"
+            width="100%"
+            [center]="{
+              lat: this.hotel_gps.geometry.location.lat,
+              lng: this.hotel_gps.geometry.location.lng
+            }"
+            [zoom]="12"
+          >
+            <map-marker
+              [position]="{
+                lat: this.hotel_gps.geometry.location.lat,
+                lng: this.hotel_gps.geometry.location.lng
+              }"
+            ></map-marker>
+          </google-map>
+        </div>
+      </div>
+    </div>
+    <div class="page-facilities">
+      <div class="page-facilities-title">
+        {{ "HOTELS.HOTEL_FACILITIES" | translate }}
+      </div>
+      <div class="page-facilities-list">
+        <div
+          *ngFor="let item of hotel?.Facilities"
+          class="page-facilities-list-item"
+        >
+          <i class="icon-check_circle_outline_black_24dp"></i>
+          <div>{{ item.NameAr ?? item.Name }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-mask *ngIf="(hotelsService.state$ | async)?.loading"></app-mask>
+<app-mask *ngIf="(roomsService.state$ | async)?.loading"></app-mask>

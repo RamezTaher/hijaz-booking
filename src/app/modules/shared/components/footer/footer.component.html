@@ -1,0 +1,53 @@
+<footer>
+  <div class="container">
+    <div class="section">
+      <div class="section-links">
+        <div class="logos">
+          <img
+            [routerLink]="['/']"
+            class="cursor-pointer web"
+            src="assets/images/logo.png"
+            alt="logo"
+          />
+          <img
+            [routerLink]="['/']"
+            class="cursor-pointer mobile"
+            src="assets/images/logo.png"
+            alt="logo"
+          />
+        </div>
+        <div class="section-links-link">
+          <a target="_blank" [routerLink]="['/pages/static/about']">{{
+            "FOOTER.ABOUT_US" | translate
+          }}</a>
+        </div>
+        <div class="section-links-link">
+          <a target="_blank" [routerLink]="['/pages/static/contact']">{{
+            "FOOTER.CONTACT_US" | translate
+          }}</a>
+        </div>
+        <div class="section-links-link">
+          <a target="_blank" [routerLink]="['/pages/static/terms-of-use']">{{
+            "FOOTER.TERMS_AND_CONDITIONS" | translate
+          }}</a>
+        </div>
+        <div class="section-links-link">
+          <a target="_blank" [routerLink]="['/pages/static/disclaimer']">{{
+            "FOOTER.DISCLAIMER" | translate
+          }}</a>
+        </div>
+        <div class="section-links-link">
+          <a target="_blank" [routerLink]="['/pages/static/privacy-policy']">{{
+            "FOOTER.PRIVACY_POLICY" | translate
+          }}</a>
+        </div>
+      </div>
+      <div class="section-rights">
+        <div>
+          {{ "FOOTER.HIJAZ" | translate }} {{ date.getFullYear() }} &copy;
+          {{ "FOOTER.RIGHTS" | translate }}.
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,43 @@
+@import "variables";
+@import "functions";
+@import "mixins";
+
+:host {
+  background-color: $secondary-tint-color;
+  overflow-y: auto;
+  @media only screen and (min-width: $breakpoints-md) {
+    overflow-y: none;
+  }
+  .filters {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 15px;
+    align-items: flex-end;
+    > * {
+      grid-column: span 4 / span 4;
+    }
+    .input-form {
+      > .title {
+        @media only screen and (min-width: $breakpoints-md) {
+          display: none;
+        }
+      }
+      > i.action {
+        @media only screen and (min-width: $breakpoints-md) {
+          top: 12px;
+        }
+      }
+      input:not(.date) {
+        padding: 12px;
+      }
+    }
+    @media only screen and (min-width: $breakpoints-md) {
+      > * {
+        grid-column: span 1 / span 1;
+      }
+    }
+    > button {
+      height: 42px;
+    }
+  }
+}

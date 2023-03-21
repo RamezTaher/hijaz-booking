@@ -1,0 +1,25 @@
+<div [ngClass]="{ 'picker-open': dp.isOpen }" class="picker">
+  <div
+    #dp="bsDaterangepicker"
+    bsDaterangepicker
+    [bsConfig]="bsConfig"
+    class="picker-section"
+    [bsValue]="rangeDate"
+    (bsValueChange)="onValueChange($event)"
+  >
+    <div class="picker-section-date-start">
+      <div class="picker-section-date-start-title">
+        <i class="icon-calendar_today_black_24dp"></i>
+        <div>{{ "INPUT.ENTER" | translate }}</div>
+      </div>
+      <div>{{ rangeDate[0] | date: "longDate" }}</div>
+    </div>
+    <div class="picker-section-date-end">
+      <div class="picker-section-date-start-title">
+        <i class="icon-calendar_today_black_24dp"></i>
+        <div>{{ "INPUT.EXIT" | translate }}</div>
+      </div>
+      <div>{{ rangeDate[1] | date: "longDate" }}</div>
+    </div>
+  </div>
+</div>

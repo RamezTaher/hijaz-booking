@@ -1,0 +1,201 @@
+@import "variables";
+@import "functions";
+@import "mixins";
+:host {
+  header {
+    padding: 10px 32px;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    z-index: 50;
+    background-color: $secondary-tint-color;
+    @include shadow-md;
+
+    nav.mobile {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      > img {
+        height: 40px;
+      }
+      > i {
+        color: $primary-color;
+        @extend .text-3xl;
+        cursor: pointer;
+      }
+      .back-btn {
+        @extend .text-3xl;
+        color: $dark-color;
+      }
+      .side {
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        z-index: 100;
+        overflow-y: auto;
+        [dir="rtl"] & {
+          right: 0;
+        }
+        [dir="ltr"] & {
+          left: 0;
+        }
+        background-color: $secondary-tint-color;
+        padding: 32px;
+        &-profile {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          gap: 8px;
+          border-bottom: 1px solid $primary-shade-color;
+          padding-bottom: 24px;
+          margin-bottom: 24px;
+          &-data {
+            color: $dark-color;
+            &-name {
+              font-weight: 700;
+              margin-bottom: 6px;
+            }
+            &-email {
+              @extend .text-xs;
+              color: $dark-shade-color;
+            }
+          }
+          i {
+            color: $primary-color;
+            @extend .text-xl;
+            [dir="rtl"] & {
+              margin-right: auto;
+            }
+            [dir="ltr"] & {
+              transform: rotate(180deg);
+              margin-left: auto;
+            }
+          }
+          &-img {
+            width: 48px;
+            height: 48px;
+            border-radius: 9999px;
+          }
+        }
+        &-action {
+          border-bottom: 1px solid $primary-shade-color;
+          padding-bottom: 24px;
+          margin-bottom: 24px;
+          > button {
+            padding: 10px 15px;
+            width: 100%;
+            border: 1px solid $secondary-tint-color;
+            color: $secondary-tint-color;
+            @extend .text-sm;
+            @media only screen and (min-width: $breakpoints-md) {
+              max-width: 170px;
+            }
+          }
+        }
+        &-links {
+          display: flex;
+          justify-content: flex-start;
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 20px;
+          &:not(:last-child) {
+            padding-bottom: 24px;
+            margin-bottom: 24px;
+            border-bottom: 1px solid $primary-shade-color;
+          }
+          &-link {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: $dark-color;
+            font-weight: 700;
+            > i {
+              color: $primary-color;
+              @extend .text-xl;
+            }
+            &.open {
+              color: $primary-color;
+            }
+          }
+        }
+        &-actions {
+          display: flex;
+          justify-content: flex-start;
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 20px;
+          border-bottom: 1px solid $primary-shade-color;
+          padding-bottom: 24px;
+          margin-bottom: 24px;
+        }
+      }
+      @media only screen and (min-width: $breakpoints-md) {
+        display: none;
+      }
+    }
+    nav.web {
+      display: none;
+      justify-content: space-between;
+      align-items: center;
+      gap: 80px;
+
+      .nav-links {
+        width: 60%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 28px;
+        > img {
+          height: 58px;
+        }
+        &-link {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          gap: 8px;
+          text-decoration: none;
+          color: $dark-color;
+          font-weight: 700;
+          @extend .text-xs;
+          border-bottom: 1px solid transparent;
+          > i {
+            color: $primary-color;
+            @extend .text-sm;
+          }
+          &.open {
+            color: $primary-color;
+            border-bottom: 2px solid $primary-color;
+          }
+        }
+      }
+      > .nav-actions {
+        width: 40%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 28px;
+        > button {
+          padding: 10px 15px;
+          width: 100%;
+          border: 1px solid $secondary-tint-color;
+          color: $secondary-tint-color;
+          @extend .text-sm;
+          @media only screen and (min-width: $breakpoints-md) {
+            max-width: 170px;
+          }
+          &.colored {
+            color: $primary-color;
+            border: 1px solid $primary-color;
+          }
+        }
+      }
+      @media only screen and (min-width: $breakpoints-md) {
+        display: flex;
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+<div class="modal">
+  <div class="web">
+    <div class="web-header">
+      <i (click)="handleCloseEvent.emit()" class="icon-close_black_24dp"></i>
+    </div>
+    <div class="web-body">
+      <i
+        *ngIf="type === 'success'"
+        class="icon-check_circle_outline_black_24dp"
+        [ngClass]="{ success: type === 'success' }"
+      ></i>
+      <i
+        *ngIf="type === 'error'"
+        class="icon-highlight_off_black_24dp"
+        [ngClass]="{ error: type === 'error' }"
+      ></i>
+      <div class="web-body-text">
+        {{ text }}
+      </div>
+    </div>
+    <div class="web-actions">
+      <button
+        (click)="handleCloseEvent.emit()"
+        class="btn btn-primary"
+        type="submit"
+      >
+        {{ "BUTTON.OK" | translate }}
+      </button>
+    </div>
+  </div>
+</div>

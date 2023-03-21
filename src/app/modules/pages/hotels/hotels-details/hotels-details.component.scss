@@ -1,0 +1,699 @@
+@import "variables";
+@import "functions";
+@import "mixins";
+
+:host {
+  background-color: $secondary-color;
+  .page {
+    padding: 60px 32px;
+    background-color: $secondary-color;
+    @media only screen and (min-width: $breakpoints-md) {
+      padding: 78px 0px;
+    }
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 16px;
+    &-back {
+      margin-top: 16px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 4px;
+      @extend .text-xxs;
+      color: $primary-color;
+      cursor: pointer;
+      i {
+        color: $primary-color;
+        @extend .text-xxs;
+        [dir="rtl"] & {
+          transform: rotate(180deg);
+        }
+      }
+    }
+    &-book {
+      padding: 15px 32px;
+      position: fixed;
+      bottom: 0;
+      z-index: 50;
+      @include shadow-md-top;
+      background-color: $secondary-tint-color;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: $primary-color;
+      width: 100%;
+      [dir="rtl"] & {
+        right: 0px;
+      }
+      [dir="ltr"] & {
+        left: 0;
+      }
+      &-price {
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        flex-direction: column;
+        &-amount {
+          @extend .text-2xl;
+          font-weight: 700;
+          > span {
+            @extend .text-xxs;
+            font-weight: 400;
+          }
+        }
+        &-tax {
+          color: $dark-shade-color;
+          @extend .text-xxs;
+          text-align: end;
+          white-space: nowrap;
+        }
+      }
+      > button {
+        padding: 10px 15px;
+        @extend .text-xs;
+        max-width: 150px;
+      }
+      @media only screen and (min-width: $breakpoints-md) {
+        display: none;
+      }
+    }
+    &-coupon {
+      width: 100%;
+      @include shadow-md;
+      border-radius: 5px;
+      background-color: $primary-tint-color;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 16px;
+      padding: 15px;
+      > button {
+        height: 42px;
+        max-width: 70px;
+        @extend .text-xs;
+      }
+      > .input-form {
+        > .title {
+          font-weight: 700;
+        }
+        > input {
+          width: 100%;
+          padding: 12px;
+        }
+      }
+      &.web {
+        display: none;
+        @media only screen and (min-width: $breakpoints-md) {
+          display: flex;
+        }
+      }
+      &.mobile {
+        display: flex;
+        @media only screen and (min-width: $breakpoints-md) {
+          display: none;
+        }
+      }
+    }
+    &-overall {
+      width: 100%;
+      @include shadow-md;
+      border-radius: 5px;
+      background-color: $secondary-tint-color;
+      &-images {
+        display: grid;
+        grid-auto-flow: column;
+        gap: 16px;
+        &-big {
+          height: 160px;
+          width: 100%;
+          grid-row: span 2 / span 2;
+          border-top-right-radius: 5px;
+          border-top-left-radius: 5px;
+          object-fit: cover;
+          > img {
+            width: 100%;
+            height: 100%;
+            border-top-right-radius: 5px;
+            border-top-left-radius: 5px;
+          }
+          @media only screen and (min-width: $breakpoints-md) {
+            height: 100%;
+            grid-column: span 2 / span 2;
+            [dir="rtl"] & {
+              border-top-right-radius: 5px;
+              border-top-left-radius: 0;
+            }
+            [dir="ltr"] & {
+              border-top-left-radius: 5px;
+              border-top-right-radius: 0;
+            }
+          }
+        }
+
+        &-other {
+          display: none;
+          object-fit: cover;
+          &:nth-child(4) {
+            [dir="rtl"] & {
+              border-top-left-radius: 5px;
+            }
+            [dir="ltr"] & {
+              border-top-right-radius: 5px;
+            }
+            > img {
+              [dir="rtl"] & {
+                border-top-left-radius: 5px;
+              }
+              [dir="ltr"] & {
+                border-top-right-radius: 5px;
+              }
+            }
+          }
+          &:nth-child(5) {
+            position: relative;
+          }
+          > img {
+            width: 100%;
+            height: 100%;
+          }
+          &-action {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            background-color: rgba($color: $dark-color, $alpha: 0.5);
+            justify-content: center;
+            align-items: center;
+            @extend .text-xl;
+            color: $secondary-tint-color;
+            font-weight: bold;
+            cursor: pointer;
+            object-fit: cover;
+          }
+          @media only screen and (min-width: $breakpoints-md) {
+            display: block;
+          }
+        }
+      }
+      &-info {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 15px;
+        gap: 12px;
+        background-color: $secondary-tint-color;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        &-data {
+          @extend .text-xl;
+          display: flex;
+          justify-content: flex-start;
+          flex-direction: column;
+          gap: 10px;
+          &-title {
+            font-weight: 700;
+          }
+          &-info {
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+            gap: 10px;
+            flex-direction: column;
+            &-pos {
+              display: flex;
+              align-items: center;
+              justify-content: flex-start;
+              gap: 4px;
+              color: $dark-shade-color;
+              @extend .text-xxs;
+              > i {
+                color: $dark-shade-color;
+                @extend .text-xxs;
+              }
+            }
+            @media only screen and (min-width: $breakpoints-md) {
+              flex-direction: row;
+              gap: 12px;
+              &-pos {
+                font-size: 12px;
+                > i {
+                  font-size: 12px;
+                }
+              }
+            }
+          }
+          &-services {
+            display: flex;
+            gap: 14px;
+            align-items: center;
+            justify-content: flex-start;
+          }
+          &-contact {
+            display: flex;
+            gap: 14px;
+            align-items: center;
+            justify-content: flex-start;
+            > div {
+              display: flex;
+              gap: 10px;
+              align-items: center;
+              justify-content: flex-start;
+              color: $primary-color;
+              @extend .text-xs;
+              > i {
+                @extend .text-xs;
+                color: $primary-color;
+              }
+              &:last-child {
+                [dir="rtl"] & {
+                  border-right: 1px solid $primary-shade-color;
+                  padding-right: 16px;
+                }
+                [dir="ltr"] & {
+                  border-left: 1px solid $primary-shade-color;
+                  padding-left: 16px;
+                }
+              }
+            }
+          }
+          @media only screen and (min-width: $breakpoints-md) {
+            gap: 12px;
+          }
+        }
+        &-room {
+          margin-top: auto;
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+          align-items: flex-start;
+          justify-content: flex-start;
+          color: $primary-color;
+          > button {
+            padding: 10px 15px;
+            display: none;
+            @extend .text-xs;
+            @media only screen and (min-width: $breakpoints-md) {
+              display: flex;
+              margin-top: 15px;
+            }
+          }
+          @media only screen and (min-width: $breakpoints-md) {
+            width: 140px;
+            margin-top: none;
+            align-items: flex-end;
+            justify-content: center;
+          }
+        }
+        @media only screen and (min-width: $breakpoints-md) {
+          flex-direction: row;
+          align-items: flex-start;
+          justify-content: space-between;
+        }
+      }
+    }
+
+    &-rooms {
+      width: 100%;
+      &.only-one-room {
+        margin-top: 80px;
+      }
+
+      &-container {
+        &-table {
+          &.no-rooms {
+            @include shadow-2;
+            padding: 20px 16px;
+          }
+
+          @include respond(lg) {
+            padding: 16px;
+            background-color: $secondary-tint-color;
+            border-radius: 5px;
+          }
+
+          &-row {
+            display: none;
+            @include respond(lg) {
+              display: flex;
+              font-size: 18px;
+              font-weight: bold;
+              color: $dark-color;
+              overflow: hidden;
+              border-top-left-radius: 5px;
+              border-top-right-radius: 5px;
+            }
+            & > * {
+              border-top: 1px solid $primary-shade-color;
+              border-bottom: 1px solid $primary-shade-color;
+              border-left: 1px solid $primary-shade-color;
+              text-align: center;
+              > div {
+                padding: 10px 16px;
+              }
+            }
+
+            > div:nth-child(1) {
+              flex: 2;
+              border-right: 1px solid $primary-shade-color;
+            }
+            > div:nth-child(2) {
+              flex: 3;
+            }
+            > div:nth-child(3) {
+              flex: 2;
+            }
+            > div:nth-child(4) {
+              flex: 3;
+            }
+          }
+
+          &-items {
+            display: flex;
+            &-item {
+              &.only-one-room {
+                height: 100%;
+              }
+              width: 100%;
+              display: flex;
+              flex-direction: column;
+              row-gap: 16px;
+              background-color: transparent;
+              @include respond(lg) {
+                row-gap: 0;
+                flex: 7;
+              }
+            }
+
+            &-book {
+              display: none;
+              @include respond(lg) {
+                display: block;
+                flex: 3;
+                border-bottom: 1px solid $primary-shade-color;
+                border-left: 1px solid $primary-shade-color;
+              }
+
+              > div {
+                padding: 16px;
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                > div:nth-child(1) {
+                  display: flex;
+                  flex-direction: column;
+                  gap: 3px;
+                  > h1 {
+                    @extend .text-3xl;
+                    color: $primary-color;
+                    font-weight: bold;
+                    gap: 8px;
+                    margin-bottom: 8px;
+                    > span {
+                      @extend .text-xxs;
+                      font-weight: 300;
+                    }
+                  }
+                  > h2 {
+                    @extend .text-xs;
+                  }
+                  > h3 {
+                    display: none;
+                    @include respond(lg) {
+                      display: block;
+                      font-size: 12px;
+                      color: $dark-shade-color;
+                    }
+                  }
+                }
+                > div:nth-child(2) {
+                  > button {
+                    padding: 12px 0;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    &-booking {
+      width: 100%;
+      &-all-pricing {
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        @media only screen and (min-width: $breakpoints-md) {
+          width: 33.3333%;
+          display: flex;
+        }
+      }
+      &-pricing {
+        width: 100%;
+        @include shadow-md;
+        border-radius: 5px;
+        background-color: $secondary-tint-color;
+        padding: 15px;
+        &-rooms {
+          border-bottom: 1px solid $primary-shade-color;
+          @extend .text-sm;
+          > div:not(:last-child) {
+            margin-bottom: 10px;
+          }
+          padding-bottom: 15px;
+        }
+        &-price {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin: 15px 0;
+          &-money {
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+            flex-direction: column;
+            .amount {
+              @extend .text-2xl;
+              font-weight: 700;
+              color: $primary-color;
+              > span {
+                @extend .text-xxs;
+                font-weight: 400;
+              }
+            }
+            .tax {
+              color: $dark-shade-color;
+              @extend .text-xxs;
+              text-align: end;
+              white-space: nowrap;
+            }
+          }
+        }
+        button {
+          padding: 10px 15px;
+          @extend .text-xs;
+          width: 100%;
+        }
+      }
+      &-all-rooms {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        @media only screen and (min-width: $breakpoints-md) {
+          width: 66.6666%;
+        }
+      }
+      &-rooms {
+        @include shadow-md;
+        border-radius: 5px;
+        width: 100%;
+        background-color: $secondary-tint-color;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+        @media only screen and (min-width: $breakpoints-md) {
+          padding: 15px;
+        }
+        &-title {
+          @extend .text-sm;
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          gap: 8px;
+          padding: 15px 15px 0 15px;
+          width: 100%;
+          @media only screen and (min-width: $breakpoints-md) {
+            padding: 0px;
+          }
+        }
+      }
+      @media only screen and (min-width: $breakpoints-md) {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+        justify-content: space-between;
+      }
+    }
+
+    &-search {
+      padding: 15px;
+      display: grid;
+      gap: 10px;
+      width: 100%;
+      grid-template-columns: repeat(10, minmax(0, 1fr));
+      background-color: $secondary-tint-color;
+      @include shadow-2;
+      border-radius: 5px;
+      > .coupon {
+        grid-column: span 10 / span 10;
+        cursor: pointer;
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+        padding: 8px 16px;
+        color: $dark-color;
+        border-radius: 5px;
+        width: 100%;
+        font-weight: 600;
+        background-color: $secondary-tint-color;
+        border-radius: 5px;
+        border: 1px solid $primary-shade-color;
+        gap: 5px;
+        i {
+          transition: all 0.1s ease-in-out;
+        }
+        .title {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          gap: 8px;
+          color: $primary-color;
+          font-size: 12px;
+          font-weight: 700;
+          > i {
+            font-size: 12px;
+          }
+        }
+        .text {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 14px;
+          font-size: 14px;
+          font-weight: 400;
+          > i {
+            color: $primary-color;
+          }
+          > input {
+            border: none;
+            padding: 0px;
+
+            color: $dark-color;
+            background-color: transparent;
+            font-size: 14px;
+            font-weight: 400;
+            height: fit-content;
+            &:hover,
+            &:focus {
+              background-color: transparent;
+            }
+          }
+        }
+        @media only screen and (min-width: $breakpoints-md) {
+          & {
+            grid-column: span 3 / span 3;
+          }
+        }
+      }
+      > button {
+        padding: 10px 25px;
+        gap: 12px;
+        > i {
+          @extend .text-2xl;
+        }
+      }
+      > * {
+        grid-column: span 10 / span 10;
+      }
+      @media only screen and (min-width: $breakpoints-md) {
+        gap: 15px;
+        > app-date-range-picker {
+          grid-column: span 5 / span 5;
+        }
+        > app-passenger-picker {
+          grid-column: span 3 / span 3;
+        }
+
+        > button {
+          grid-column: span 2 / span 2;
+        }
+      }
+    }
+    &-description {
+      padding: 15px;
+      background-color: $secondary-tint-color;
+      @include shadow-2;
+      border-radius: 5px;
+      width: 100%;
+      &-title {
+        font-weight: 700;
+        margin-bottom: 15px;
+      }
+      > p {
+        @extend .text-sm;
+      }
+      &-content {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        @media only screen and (min-width: $breakpoints-md) {
+          flex-direction: row;
+          justify-content: space-between;
+        }
+        p,
+        div {
+          @media screen and (min-width: $breakpoints-md) {
+            width: 50%;
+          }
+        }
+      }
+    }
+    &-facilities {
+      width: 100%;
+      padding: 15px;
+      background-color: $secondary-tint-color;
+      @include shadow-2;
+      border-radius: 5px;
+      &-title {
+        font-weight: 700;
+        margin-bottom: 15px;
+      }
+      &-list {
+        @extend .text-sm;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        &-item {
+          display: flex;
+          justify-content: flex-start;
+          gap: 4px;
+          align-items: center;
+          > i {
+            @extend .text-xs;
+            color: $primary-color;
+          }
+        }
+        @media only screen and (min-width: $breakpoints-md) {
+          grid-template-columns: repeat(5, minmax(0, 1fr));
+        }
+        @media only screen and (min-width: $breakpoints-xl) {
+          grid-template-columns: repeat(6, minmax(0, 1fr));
+        }
+      }
+    }
+  }
+}
